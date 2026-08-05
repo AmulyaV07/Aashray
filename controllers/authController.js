@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const loginPage = (req, res) => {
     res.render("auth/login");
@@ -67,7 +68,23 @@ const loginUser = async (req, res) => {
             return res.send("Invalid Password");
         }
 
-        res.send("Login Successful");
+        const token = jwt.sign(
+            {
+                id: user._id,
+                role: user.role
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "7d"
+            }
+        );
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
+
+        res.redirect("/dashboard");
 
     } catch (error) {
 
