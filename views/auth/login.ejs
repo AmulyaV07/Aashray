@@ -1,38 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
     <title>Login</title>
-    <link rel="stylesheet" href="/css/output.css">
+
+    <%- include("../partials/head") %>
+
 </head>
 
-<body>
+<body class="bg-slate-950 text-white font-[Inter]">
 
-    <h1>Login</h1>
+    <%- include("../partials/navbar") %>
 
-    <form action="/auth/login" method="POST">
+    <main class="min-h-[80vh] flex items-center justify-center">
+
+        <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-8">
+
+            <h1 class="text-4xl font-bold text-center">
+                Welcome Back
+            </h1>
+
+            <p class="text-slate-400 text-center mt-3 mb-8">
+                Login to continue to AASHRAY.
+            </p>
+
+            <form action="/auth/login" method="POST" class="space-y-5">
+
+    <div>
+        <label class="block mb-2 text-sm font-medium text-slate-300">
+            Email Address
+        </label>
 
         <input
             type="email"
             name="email"
-            placeholder="Enter Email"
+            placeholder="Enter your email"
+            class="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
+    </div>
 
-        <br><br>
+    <div>
+        <label class="block mb-2 text-sm font-medium text-slate-300">
+            Password
+        </label>
 
         <input
             type="password"
             name="password"
-            placeholder="Enter Password"
+            placeholder="Enter your password"
+            class="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
+    </div>
 
-        <br><br>
+    <button
+        type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 transition-all duration-200 rounded-xl py-3 font-semibold cursor-pointer"
+    >
+        Login
+    </button>
 
-        <button type="submit">
-            Login
-        </button>
+</form>
 
-    </form>
+<p class="text-center text-slate-400 text-sm mt-6">
+
+    Don't have an account?
+
+    <a
+        href="/auth/register"
+        class="text-blue-500 hover:text-blue-400 font-medium"
+    >
+        Register
+    </a>
+
+</p>
+
+        </div>
+
+    </main>
+
+    <%- include("../partials/footer") %>
 
 </body>
 

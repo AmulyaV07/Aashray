@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Complaint Details</title>
+
+    <%- include("../partials/head") %>
+
+</head>
+
+<body class="bg-slate-950 text-white">
+
+    <%- include("../partials/navbar") %>
+
+    <main class="max-w-3xl mx-auto py-10 px-6">
+
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-8">
+
+            <h1 class="text-3xl font-bold">
+                <%= complaint.title %>
+            </h1>
+
+            <p class="text-slate-400 mt-6">
+                <%= complaint.description %>
+            </p>
+
+            <div class="mt-8 space-y-3">
+
+                <p><strong>Category:</strong> <%= complaint.category %></p>
+
+                <p><strong>Room:</strong> <%= complaint.roomNumber %></p>
+
+                <p><strong>Status:</strong> <%= complaint.status %></p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

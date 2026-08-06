@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Raise Complaint</title>
+
+    <%- include("../partials/head") %>
+
+</head>
+
+<body class="bg-slate-950 text-white font-[Inter]">
+
+    <%- include("../partials/navbar") %>
+
+    <main class="max-w-3xl mx-auto py-12 px-6">
+
+        <div class="bg-slate-900 rounded-2xl border border-slate-800 p-8">
+
+            <h1 class="text-3xl font-bold">
+                Raise a Complaint
+            </h1>
+
+            <p class="text-slate-400 mt-2 mb-8">
+                Fill in the details below and submit your complaint.
+            </p>
+
+            <form
+                action="/complaints/create"
+                method="POST"
+                class="space-y-5"
+
+                <div>
+
+    <label class="block mb-2">
+        Complaint Title
+    </label>
+
+    <input
+        type="text"
+        name="title"
+        placeholder="Enter complaint title"
+        class="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3"
+    >
+
+</div>
+
+<div>
+
+    <label class="block mb-2">
+        Category
+    </label>
+
+    <select
+        name="category"
+        class="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3"
+    >
+
+        <option>Water</option>
+        <option>Electricity</option>
+        <option>Cleaning</option>
+        <option>Internet</option>
+        <option>Furniture</option>
+
+    </select>
+
+</div>
+
+<div>
+
+    <label class="block mb-2">
+        Description
+    </label>
+
+    <textarea
+        name="description"
+        rows="5"
+        placeholder="Describe your issue..."
+        class="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3"
+    ></textarea>
+
+</div>
+
+<div>
+
+    <label class="block mb-2">
+        Room Number
+    </label>
+
+    <input
+        type="text"
+        name="roomNumber"
+        placeholder="A-204"
+        class="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3"
+    >
+
+</div>
+
+<button
+    type="submit"
+    class="w-full bg-blue-600 hover:bg-blue-700 rounded-xl py-3 font-semibold transition"
+>
+    Submit Complaint
+</button>
+            >
+
+            </form>
+
+        </div>
+
+    </main>
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>
