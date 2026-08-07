@@ -96,9 +96,18 @@ const loginUser = async (req, res) => {
 
 };
 
+const logoutUser = (req, res) => {
+
+    res.clearCookie("token");
+
+    res.redirect("/auth/login");
+
+};
+
 module.exports = {
     loginPage,
     registerPage,
     registerUser,
-    loginUser
+    loginUser,
+    logoutUser
 };

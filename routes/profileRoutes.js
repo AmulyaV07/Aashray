@@ -1,13 +1,12 @@
 const express = require("express");
-
 const router = express.Router();
 
 const verifyToken = require("../middlewares/authMiddleware");
 
 const {
-    getDashboard
-} = require("../controllers/dashboardController");
+    getProfile
+} = require("../controllers/profileController");
 
-router.get("/", verifyToken, getDashboard);
+router.get("/", verifyToken, getProfile);
 
 module.exports = router;

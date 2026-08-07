@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Dashboard</title>
+
+    <%- include("./partials/head") %>
+
+</head>
+
+<body class="bg-slate-950 text-white">
+
+    <%- include("./partials/navbar") %>
+
+    <main class="max-w-7xl mx-auto py-10 px-6">
+
+        <h1 class="text-4xl font-bold">
+            Welcome, <%= user.name %> 👋
+        </h1>
+
+        <p class="text-slate-400 mt-2">
+            Here's an overview of your complaints.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+
+    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <p class="text-slate-400">Pending</p>
+        <h2 class="text-4xl font-bold mt-2">
+            <%= pending %>
+        </h2>
+    </div>
+
+    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <p class="text-slate-400">In Progress</p>
+        <h2 class="text-4xl font-bold mt-2">
+            <%= inProgress %>
+        </h2>
+    </div>
+
+    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+        <p class="text-slate-400">Resolved</p>
+        <h2 class="text-4xl font-bold mt-2">
+            <%= resolved %>
+        </h2>
+    </div>
+
+</div>
+
+    <div class="mt-12">
+
+    <h2 class="text-2xl font-bold mb-5">
+        Recent Complaints
+    </h2>
+
+    <% if(recentComplaints.length === 0){ %>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+
+            No complaints found.
+
+        </div>
+
+    <% } else { %>
+
+        <% recentComplaints.forEach((complaint)=>{ %>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 mb-4">
+
+                <a
+                    href="/complaints/<%= complaint._id %>"
+                    class="text-lg font-semibold hover:text-blue-400"
+                >
+                    <%= complaint.title %>
+                </a>
+
+                <p class="text-slate-400 mt-2">
+                    <%= complaint.description %>
+                </p>
+
+                <span class="text-blue-400">
+                    <%= complaint.status %>
+                </span>
+
+            </div>
+
+        <% }) %>
+
+    <% } %>
+
+</div>
+    </main>
+
+    <%- include("./partials/footer") %>
+
+</body>
+
+</html>

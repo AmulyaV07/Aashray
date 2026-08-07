@@ -7,11 +7,15 @@ const {
     getComplaintForm,
     createComplaint,
     getMyComplaints,
-    getComplaintById
+    getComplaintById,
+    editComplaintPage,
+    updateComplaint
 } = require("../controllers/complaintController");
 
 router.get("/create", verifyToken, getComplaintForm);
 router.post("/create", verifyToken, createComplaint);
 router.get("/my-complaints", verifyToken, getMyComplaints);
+router.get("/:id/edit", verifyToken, editComplaintPage);
+router.post("/:id/edit", verifyToken, updateComplaint);
 router.get("/:id", verifyToken, getComplaintById);
 module.exports = router;

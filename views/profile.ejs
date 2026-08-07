@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Profile</title>
+
+    <%- include("./partials/head") %>
+
+</head>
+
+<body class="bg-slate-950 text-white">
+
+    <%- include("./partials/navbar") %>
+
+    <main class="max-w-3xl mx-auto py-10 px-6">
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+
+            <h1 class="text-3xl font-bold mb-8">
+                My Profile
+            </h1>
+
+            <div class="space-y-5">
+
+                <div>
+                    <p class="text-slate-400">Name</p>
+                    <h2 class="text-xl"><%= user.name %></h2>
+                </div>
+
+                <div>
+                    <p class="text-slate-400">Email</p>
+                    <h2 class="text-xl"><%= user.email %></h2>
+                </div>
+
+                <div>
+                    <p class="text-slate-400">Room Number</p>
+                    <h2 class="text-xl"><%= user.roomNumber %></h2>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <%- include("./partials/footer") %>
+
+</body>
+
+</html>
