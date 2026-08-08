@@ -2,6 +2,7 @@ const express = require("express");
 const indexRoutes = require("./routes/indexRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const profileRoutes = require("./routes/profileRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 const authRoutes = require("./routes/authRoutes");
 const complaintRoutes = require("./routes/complaintRoutes");
 const cookieParser = require("cookie-parser");
@@ -18,5 +19,5 @@ app.use("/dashboard", dashboardRoutes);
 app.use("/profile", profileRoutes);
 app.use("/auth", authRoutes);
 app.use("/complaints", complaintRoutes);
-
+app.use("/admin", adminRoutes);
 module.exports = app;

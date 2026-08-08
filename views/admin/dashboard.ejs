@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Admin Dashboard</title>
+
+    <%- include("../partials/head") %>
+
+</head>
+
+<body class="bg-slate-950 text-white">
+
+    <%- include("../partials/navbar") %>
+
+    <main class="max-w-7xl mx-auto py-10 px-6">
+
+        <h1 class="text-4xl font-bold">
+            Admin Dashboard
+        </h1>
+
+        <p class="text-slate-400 mt-2">
+            Manage hostel complaints and monitor their status.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mt-10">
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                <p class="text-slate-400">Total</p>
+                <h2 class="text-4xl font-bold mt-2">
+                    <%= total %>
+                </h2>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                <p class="text-slate-400">Pending</p>
+                <h2 class="text-4xl font-bold mt-2">
+                    <%= pending %>
+                </h2>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                <p class="text-slate-400">In Progress</p>
+                <h2 class="text-4xl font-bold mt-2">
+                    <%= inProgress %>
+                </h2>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+                <p class="text-slate-400">Resolved</p>
+                <h2 class="text-4xl font-bold mt-2">
+                    <%= resolved %>
+                </h2>
+            </div>
+            <div class="mt-12">
+
+    <h2 class="text-2xl font-bold mb-6">
+        Recent Complaints
+    </h2>
+
+    <% complaints.forEach((complaint) => { %>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 mb-4">
+
+            <div class="flex justify-between items-start">
+
+                <div>
+
+                    <h3 class="text-xl font-semibold">
+                        <%= complaint.title %>
+                    </h3>
+
+                    <p class="text-slate-400 mt-2">
+                        <%= complaint.description %>
+                    </p>
+
+                    <p class="text-sm text-slate-500 mt-3">
+                        Student:
+                        <%= complaint.user.name %>
+                        |
+                        Room:
+                        <%= complaint.user.roomNumber %>
+                    </p>
+
+                </div>
+
+                <span class="text-blue-400">
+                    <%= complaint.status %>
+                </span>
+
+            </div>
+
+        </div>
+
+    <% }) %>
+
+</div>
+
+        </div>
+
+    </main>
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

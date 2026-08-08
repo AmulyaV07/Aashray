@@ -32,6 +32,14 @@ const getComplaintById = async (req, res) => {
 
     const complaint = await Complaint.findById(req.params.id);
 
+    if (!complaint) {
+        return res.send("Complaint not found");
+    }
+
+    if (complaint.user.toString() !== req.user.id) {
+        return res.send("Unauthorized");
+    }
+
     res.render("complaints/details", {
         complaint
     });
@@ -44,6 +52,10 @@ const editComplaintPage = async (req, res) => {
 
     if (!complaint) {
         return res.send("Complaint not found");
+    }
+
+    if (complaint.user.toString() !== req.user.id) {
+        return res.send("Unauthorized");
     }
 
     if (complaint.status !== "Pending") {
@@ -80,11 +92,33 @@ const updateComplaint = async (req, res) => {
 
 };
 
+const deleteComplaint = async (req, res) => {
+
+    const complaint = await Complaint.findById(req.params.id);
+
+    if (!complaint) {
+        return res.send("Complaint not found");
+    }
+
+    if (complaint.user.toString() !== req.user.id) {
+        return res.send("Unauthorized");
+    }
+
+    if (complaint.status !== "Pending") {
+        return res.send("Only pending complaints can be cancelled.");
+    }
+
+    await Complaint.findByIdAndDelete(req.params.id);
+
+    res.redirect("/complaints/my-complaints");
+};
+
 module.exports = {
     getComplaintForm,
     createComplaint,
     getMyComplaints,
     getComplaintById,
     editComplaintPage,
-    updateComplaint
+    updateComplaint,
+    deleteComplaint
 };
