@@ -23,15 +23,28 @@ const userSchema = new mongoose.Schema(
 
         roomNumber: {
             type: String,
-            required: true,
-            trim: true
+            required: function () {
+                return this.role === "student";
+            }
         },
 
         role: {
             type: String,
-            enum: ["student", "admin"],
+            enum: ["student", "worker", "admin"],
             default: "student"
-}
+        },
+
+        department: {
+            type: String,
+            enum: [
+                "Plumbing",
+                "Electrical",
+                "Cleaning",
+                "Internet",
+                "Maintenance"
+            ],
+            default: null
+        }
     },
     {
         timestamps: true

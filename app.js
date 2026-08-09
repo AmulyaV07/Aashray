@@ -5,6 +5,7 @@ const profileRoutes = require("./routes/profileRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const authRoutes = require("./routes/authRoutes");
 const complaintRoutes = require("./routes/complaintRoutes");
+const workerRoutes = require("./routes/workerRoutes");
 const cookieParser = require("cookie-parser");
 const app = express();
 
@@ -19,5 +20,6 @@ app.use("/dashboard", dashboardRoutes);
 app.use("/profile", profileRoutes);
 app.use("/auth", authRoutes);
 app.use("/complaints", complaintRoutes);
+app.use("/workers", workerRoutes);
 app.use("/admin", adminRoutes);
 module.exports = app;
