@@ -20,6 +20,6 @@ app.use("/dashboard", dashboardRoutes);
 app.use("/profile", profileRoutes);
 app.use("/auth", authRoutes);
 app.use("/complaints", complaintRoutes);
-app.use("/workers", workerRoutes);
+app.use("/worker", workerRoutes);
 app.use("/admin", adminRoutes);
 module.exports = app;

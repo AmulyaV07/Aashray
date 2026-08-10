@@ -9,6 +9,13 @@ const {
     getWorkerDashboard
 } = require("../controllers/workerController");
 
-router.get("/", verifyToken, verifyWorker, getWorkerDashboard);
+
+router.get(
+    "/",
+    verifyToken,
+    verifyWorker,
+    getWorkerDashboard
+);
+
 
 module.exports = router;
