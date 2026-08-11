@@ -9,6 +9,7 @@
 
 </head>
 
+
 <body class="bg-slate-950 text-white min-h-screen">
 
     <%- include("../partials/navbar") %>
@@ -37,9 +38,10 @@
 
         <!-- Statistics -->
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
 
-            <!-- Total -->
+
+            <!-- Total Complaints -->
 
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
 
@@ -98,6 +100,32 @@
 
             </div>
 
+
+            <!-- Average Rating -->
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+                <p class="text-slate-400 text-sm">
+                    Average Rating
+                </p>
+
+                <h2 class="text-4xl font-bold mt-3">
+
+                    <%= averageRating %>
+
+                    <span class="text-yellow-400 text-2xl">
+                        ★
+                    </span>
+
+                </h2>
+
+                <p class="text-slate-500 text-sm mt-2">
+                    Out of 5
+                </p>
+
+            </div>
+
+
         </div>
 
 
@@ -132,14 +160,18 @@
 
                 </div>
 
+
             <% } else { %>
 
 
                 <div class="space-y-4">
 
+
                     <% complaints.forEach((complaint) => { %>
 
+
                         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition">
+
 
                             <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
 
@@ -147,6 +179,7 @@
                                 <!-- Complaint Information -->
 
                                 <div class="flex-1">
+
 
                                     <div class="flex flex-wrap items-center gap-3">
 
@@ -169,7 +202,8 @@
 
                                     <!-- Details -->
 
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 mt-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mt-6">
+
 
                                         <!-- Student -->
 
@@ -221,7 +255,7 @@
                                         </div>
 
 
-                                        <!-- Worker -->
+                                        <!-- Assigned Worker -->
 
                                         <div>
 
@@ -272,7 +306,9 @@
 
                                         </div>
 
+
                                     </div>
+
 
                                 </div>
 
@@ -280,6 +316,7 @@
                                 <!-- Status -->
 
                                 <div class="shrink-0">
+
 
                                     <% if (complaint.status === "Pending") { %>
 
@@ -310,122 +347,167 @@
 
                                     <% } %>
 
+
                                 </div>
+
 
                             </div>
 
+
                         </div>
 
+
                     <% }) %>
+
 
                 </div>
 
 
             <% } %>
 
-        </div>
-
-    </main>
-        <!-- Feedback -->
-
-<div class="mt-12">
-
-    <div class="mb-6">
-
-        <h2 class="text-2xl font-bold">
-            Student Feedback
-        </h2>
-
-        <p class="text-slate-400 mt-1">
-            Reviews submitted after complaints were resolved.
-        </p>
-
-    </div>
-
-
-    <% if (feedbacks.length === 0) { %>
-
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center">
-
-            <p class="text-slate-400">
-                No feedback submitted yet.
-            </p>
 
         </div>
 
-    <% } else { %>
 
-        <div class="space-y-4">
+        <!-- Student Feedback -->
 
-            <% feedbacks.forEach((feedback) => { %>
-
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-5">
-
-                        <div>
-
-                            <% if (feedback.complaint) { %>
-
-                                <h3 class="text-lg font-semibold">
-                                    <%= feedback.complaint.title %>
-                                </h3>
-
-                            <% } %>
+        <div class="mt-12">
 
 
-                            <% if (feedback.student) { %>
+            <div class="mb-6">
 
-                                <p class="text-sm text-slate-500 mt-2">
-                                    Student:
-                                    <span class="text-slate-300">
-                                        <%= feedback.student.name %>
-                                    </span>
-                                </p>
+                <h2 class="text-2xl font-bold">
+                    Student Feedback
+                </h2>
 
-                            <% } %>
+                <p class="text-slate-400 mt-1">
+                    Reviews submitted after complaints were resolved.
+                </p>
 
-
-                            <% if (feedback.comment) { %>
-
-                                <p class="text-slate-400 mt-4">
-                                    "<%= feedback.comment %>"
-                                </p>
-
-                            <% } %>
-
-                        </div>
+            </div>
 
 
-                        <div class="shrink-0">
+            <% if (feedbacks.length === 0) { %>
 
-                            <p class="text-yellow-400 text-lg tracking-wide">
 
-                                <% for (let i = 0; i < feedback.rating; i++) { %>
-                                    ⭐
-                                <% } %>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center">
 
-                            </p>
-
-                            <p class="text-xs text-slate-500 mt-1">
-                                <%= feedback.rating %>/5
-                            </p>
-
-                        </div>
-
-                    </div>
+                    <p class="text-slate-400">
+                        No feedback submitted yet.
+                    </p>
 
                 </div>
 
-            <% }) %>
+
+            <% } else { %>
+
+
+                <div class="space-y-4">
+
+
+                    <% feedbacks.forEach((feedback) => { %>
+
+
+                        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-5">
+
+
+                                <!-- Feedback Information -->
+
+                                <div>
+
+
+                                    <% if (feedback.complaint) { %>
+
+                                        <h3 class="text-lg font-semibold">
+                                            <%= feedback.complaint.title %>
+                                        </h3>
+
+                                    <% } %>
+
+
+                                    <% if (feedback.student) { %>
+
+                                        <p class="text-sm text-slate-500 mt-2">
+
+                                            Student:
+
+                                            <span class="text-slate-300">
+                                                <%= feedback.student.name %>
+                                            </span>
+
+                                        </p>
+
+                                    <% } %>
+
+
+                                    <% if (feedback.comment) { %>
+
+                                        <p class="text-slate-400 mt-4">
+                                            "<%= feedback.comment %>"
+                                        </p>
+
+                                    <% } else { %>
+
+                                        <p class="text-slate-500 mt-4">
+                                            No written comment.
+                                        </p>
+
+                                    <% } %>
+
+
+                                </div>
+
+
+                                <!-- Rating -->
+
+                                <div class="shrink-0">
+
+
+                                    <p class="text-yellow-400 text-lg tracking-wide">
+
+                                        <% for (let i = 0; i < feedback.rating; i++) { %>
+
+                                            ⭐
+
+                                        <% } %>
+
+                                    </p>
+
+
+                                    <p class="text-xs text-slate-500 mt-1">
+                                        <%= feedback.rating %>/5
+                                    </p>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    <% }) %>
+
+
+                </div>
+
+
+            <% } %>
+
 
         </div>
 
-    <% } %>
 
-</div>
+    </main>
+
 
     <%- include("../partials/footer") %>
+
 
 </body>
 

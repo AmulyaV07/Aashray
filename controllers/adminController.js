@@ -33,6 +33,19 @@ const getAdminDashboard = async (req, res) => {
     const feedbacks = await Feedback.find()
     .populate("complaint")
     .populate("student");
+     
+    const ratingData = await Feedback.aggregate([
+    {
+        $group: {
+            _id: null,
+            averageRating: { $avg: "$rating" }
+        }
+    }
+    ]);
+
+const averageRating = ratingData.length
+    ? ratingData[0].averageRating.toFixed(1)
+    : "0.0";
 
     res.render("admin/dashboard", {
         total,
@@ -40,7 +53,8 @@ const getAdminDashboard = async (req, res) => {
         inProgress,
         resolved,
         complaints,
-        feedbacks
+        feedbacks,
+        averageRating
     });
 
 };
