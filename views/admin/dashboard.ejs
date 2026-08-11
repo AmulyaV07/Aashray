@@ -9,96 +9,421 @@
 
 </head>
 
-<body class="bg-slate-950 text-white">
+<body class="bg-slate-950 text-white min-h-screen">
 
     <%- include("../partials/navbar") %>
 
+
     <main class="max-w-7xl mx-auto py-10 px-6">
 
-        <h1 class="text-4xl font-bold">
-            Admin Dashboard
-        </h1>
+        <!-- Header -->
 
-        <p class="text-slate-400 mt-2">
-            Manage hostel complaints and monitor their status.
-        </p>
+        <div class="mb-10">
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mt-10">
+            <p class="text-blue-400 font-medium mb-2">
+                AASHRAY ADMIN
+            </p>
 
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
-                <p class="text-slate-400">Total</p>
-                <h2 class="text-4xl font-bold mt-2">
+            <h1 class="text-4xl font-bold tracking-tight">
+                Admin Dashboard
+            </h1>
+
+            <p class="text-slate-400 mt-2">
+                Monitor hostel complaints, workers and resolution progress.
+            </p>
+
+        </div>
+
+
+        <!-- Statistics -->
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+            <!-- Total -->
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+                <p class="text-slate-400 text-sm">
+                    Total Complaints
+                </p>
+
+                <h2 class="text-4xl font-bold mt-3">
                     <%= total %>
                 </h2>
+
             </div>
 
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
-                <p class="text-slate-400">Pending</p>
-                <h2 class="text-4xl font-bold mt-2">
+
+            <!-- Pending -->
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+                <p class="text-slate-400 text-sm">
+                    Pending
+                </p>
+
+                <h2 class="text-4xl font-bold mt-3">
                     <%= pending %>
                 </h2>
+
             </div>
 
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
-                <p class="text-slate-400">In Progress</p>
-                <h2 class="text-4xl font-bold mt-2">
+
+            <!-- In Progress -->
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+                <p class="text-slate-400 text-sm">
+                    In Progress
+                </p>
+
+                <h2 class="text-4xl font-bold mt-3">
                     <%= inProgress %>
                 </h2>
+
             </div>
 
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
-                <p class="text-slate-400">Resolved</p>
-                <h2 class="text-4xl font-bold mt-2">
+
+            <!-- Resolved -->
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+                <p class="text-slate-400 text-sm">
+                    Resolved
+                </p>
+
+                <h2 class="text-4xl font-bold mt-3">
                     <%= resolved %>
                 </h2>
+
             </div>
-            <div class="mt-12">
 
-    <h2 class="text-2xl font-bold mb-6">
-        Recent Complaints
-    </h2>
+        </div>
 
-    <% complaints.forEach((complaint) => { %>
 
-        <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 mb-4">
+        <!-- Recent Complaints -->
 
-            <div class="flex justify-between items-start">
+        <div class="mt-12">
 
-                <div>
+            <div class="mb-6">
 
-                    <h3 class="text-xl font-semibold">
-                        <%= complaint.title %>
+                <h2 class="text-2xl font-bold">
+                    Recent Complaints
+                </h2>
+
+                <p class="text-slate-400 mt-1">
+                    Monitor the latest complaints and their assigned workers.
+                </p>
+
+            </div>
+
+
+            <% if (complaints.length === 0) { %>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-10 text-center">
+
+                    <h3 class="text-lg font-semibold">
+                        No complaints found
                     </h3>
 
                     <p class="text-slate-400 mt-2">
-                        <%= complaint.description %>
-                    </p>
-
-                    <p class="text-sm text-slate-500 mt-3">
-                        Student:
-                        <%= complaint.user.name %>
-                        |
-                        Room:
-                        <%= complaint.user.roomNumber %>
+                        New complaints will appear here.
                     </p>
 
                 </div>
 
-                <span class="text-blue-400">
-                    <%= complaint.status %>
-                </span>
+            <% } else { %>
 
-            </div>
 
-        </div>
+                <div class="space-y-4">
 
-    <% }) %>
+                    <% complaints.forEach((complaint) => { %>
 
-</div>
+                        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition">
+
+                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
+
+
+                                <!-- Complaint Information -->
+
+                                <div class="flex-1">
+
+                                    <div class="flex flex-wrap items-center gap-3">
+
+                                        <h3 class="text-xl font-semibold">
+                                            <%= complaint.title %>
+                                        </h3>
+
+
+                                        <span class="text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300">
+                                            <%= complaint.category %>
+                                        </span>
+
+                                    </div>
+
+
+                                    <p class="text-slate-400 mt-2">
+                                        <%= complaint.description %>
+                                    </p>
+
+
+                                    <!-- Details -->
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 mt-6">
+
+                                        <!-- Student -->
+
+                                        <div>
+
+                                            <p class="text-xs text-slate-500 uppercase tracking-wide">
+                                                Student
+                                            </p>
+
+                                            <p class="text-sm text-slate-300 mt-1">
+
+                                                <% if (complaint.user) { %>
+
+                                                    <%= complaint.user.name %>
+
+                                                <% } else { %>
+
+                                                    Unknown
+
+                                                <% } %>
+
+                                            </p>
+
+                                        </div>
+
+
+                                        <!-- Room -->
+
+                                        <div>
+
+                                            <p class="text-xs text-slate-500 uppercase tracking-wide">
+                                                Room
+                                            </p>
+
+                                            <p class="text-sm text-slate-300 mt-1">
+
+                                                <% if (complaint.user && complaint.user.roomNumber) { %>
+
+                                                    <%= complaint.user.roomNumber %>
+
+                                                <% } else { %>
+
+                                                    N/A
+
+                                                <% } %>
+
+                                            </p>
+
+                                        </div>
+
+
+                                        <!-- Worker -->
+
+                                        <div>
+
+                                            <p class="text-xs text-slate-500 uppercase tracking-wide">
+                                                Assigned Worker
+                                            </p>
+
+                                            <p class="text-sm text-slate-300 mt-1">
+
+                                                <% if (complaint.assignedTo) { %>
+
+                                                    <%= complaint.assignedTo.name %>
+
+                                                <% } else { %>
+
+                                                    <span class="text-yellow-400">
+                                                        Not assigned
+                                                    </span>
+
+                                                <% } %>
+
+                                            </p>
+
+                                        </div>
+
+
+                                        <!-- Department -->
+
+                                        <div>
+
+                                            <p class="text-xs text-slate-500 uppercase tracking-wide">
+                                                Department
+                                            </p>
+
+                                            <p class="text-sm text-slate-300 mt-1">
+
+                                                <% if (complaint.assignedTo && complaint.assignedTo.department) { %>
+
+                                                    <%= complaint.assignedTo.department %>
+
+                                                <% } else { %>
+
+                                                    N/A
+
+                                                <% } %>
+
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Status -->
+
+                                <div class="shrink-0">
+
+                                    <% if (complaint.status === "Pending") { %>
+
+                                        <span class="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
+                                            Pending
+                                        </span>
+
+
+                                    <% } else if (complaint.status === "In Progress") { %>
+
+                                        <span class="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                                            In Progress
+                                        </span>
+
+
+                                    <% } else if (complaint.status === "Resolved") { %>
+
+                                        <span class="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-green-500/10 text-green-400 border border-green-500/20">
+                                            Resolved
+                                        </span>
+
+
+                                    <% } else { %>
+
+                                        <span class="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-slate-800 text-slate-300">
+                                            <%= complaint.status %>
+                                        </span>
+
+                                    <% } %>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    <% }) %>
+
+                </div>
+
+
+            <% } %>
 
         </div>
 
     </main>
+        <!-- Feedback -->
+
+<div class="mt-12">
+
+    <div class="mb-6">
+
+        <h2 class="text-2xl font-bold">
+            Student Feedback
+        </h2>
+
+        <p class="text-slate-400 mt-1">
+            Reviews submitted after complaints were resolved.
+        </p>
+
+    </div>
+
+
+    <% if (feedbacks.length === 0) { %>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center">
+
+            <p class="text-slate-400">
+                No feedback submitted yet.
+            </p>
+
+        </div>
+
+    <% } else { %>
+
+        <div class="space-y-4">
+
+            <% feedbacks.forEach((feedback) => { %>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-5">
+
+                        <div>
+
+                            <% if (feedback.complaint) { %>
+
+                                <h3 class="text-lg font-semibold">
+                                    <%= feedback.complaint.title %>
+                                </h3>
+
+                            <% } %>
+
+
+                            <% if (feedback.student) { %>
+
+                                <p class="text-sm text-slate-500 mt-2">
+                                    Student:
+                                    <span class="text-slate-300">
+                                        <%= feedback.student.name %>
+                                    </span>
+                                </p>
+
+                            <% } %>
+
+
+                            <% if (feedback.comment) { %>
+
+                                <p class="text-slate-400 mt-4">
+                                    "<%= feedback.comment %>"
+                                </p>
+
+                            <% } %>
+
+                        </div>
+
+
+                        <div class="shrink-0">
+
+                            <p class="text-yellow-400 text-lg tracking-wide">
+
+                                <% for (let i = 0; i < feedback.rating; i++) { %>
+                                    ⭐
+                                <% } %>
+
+                            </p>
+
+                            <p class="text-xs text-slate-500 mt-1">
+                                <%= feedback.rating %>/5
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    <% } %>
+
+</div>
 
     <%- include("../partials/footer") %>
 

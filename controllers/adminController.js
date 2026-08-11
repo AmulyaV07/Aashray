@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const Feedback = require("../models/Feedback");
 const getAddWorkerPage = (req, res) => {
     res.render("admin/addWorker");
 };
@@ -22,17 +23,24 @@ const getAdminDashboard = async (req, res) => {
     });
 
     const complaints = await Complaint
-        .find()
-        .populate("user")
-        .sort({ createdAt: -1 })
-        .limit(10);
+    .find()
+    .populate("user")
+    .populate("assignedTo")
+    .sort({ createdAt: -1 })
+    .limit(10);
+
+
+    const feedbacks = await Feedback.find()
+    .populate("complaint")
+    .populate("student");
 
     res.render("admin/dashboard", {
         total,
         pending,
         inProgress,
         resolved,
-        complaints
+        complaints,
+        feedbacks
     });
 
 };
