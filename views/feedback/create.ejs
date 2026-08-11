@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Give Feedback</title>
+
+    <%- include("../partials/head") %>
+
+</head>
+
+<body class="bg-slate-950 text-white min-h-screen">
+
+    <%- include("../partials/navbar") %>
+
+
+    <main class="max-w-3xl mx-auto px-6 py-12">
+
+        <div class="mb-8">
+
+            <p class="text-blue-400 font-medium mb-2">
+                AASHRAY FEEDBACK
+            </p>
+
+            <h1 class="text-4xl font-bold">
+                Give Feedback
+            </h1>
+
+            <p class="text-slate-400 mt-2">
+                Your complaint has been resolved. Tell us about your experience.
+            </p>
+
+        </div>
+
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8">
+
+            <h2 class="text-xl font-semibold">
+                <%= complaint.title %>
+            </h2>
+
+            <p class="text-slate-400 mt-2">
+                <%= complaint.description %>
+            </p>
+
+
+            <form
+                action="/feedback/<%= complaint._id %>"
+                method="POST"
+                class="mt-8"
+            >
+
+                <!-- Rating -->
+
+                <div class="mb-6">
+
+                    <label class="block text-sm font-medium mb-3">
+                        How would you rate the resolution?
+                    </label>
+
+                    <select
+                        name="rating"
+                        required
+                        class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white"
+                    >
+
+                        <option value="">
+                            Select rating
+                        </option>
+
+                        <option value="5">
+                            ⭐⭐⭐⭐⭐ — Excellent
+                        </option>
+
+                        <option value="4">
+                            ⭐⭐⭐⭐ — Good
+                        </option>
+
+                        <option value="3">
+                            ⭐⭐⭐ — Average
+                        </option>
+
+                        <option value="2">
+                            ⭐⭐ — Poor
+                        </option>
+
+                        <option value="1">
+                            ⭐ — Very Poor
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Comment -->
+
+                <div class="mb-6">
+
+                    <label class="block text-sm font-medium mb-3">
+                        Your feedback
+                    </label>
+
+                    <textarea
+                        name="comment"
+                        rows="5"
+                        maxlength="500"
+                        placeholder="Tell us about your experience..."
+                        class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold transition"
+                >
+                    Submit Feedback
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>
