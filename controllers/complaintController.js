@@ -2,38 +2,136 @@ const Complaint = require("../models/Complaint");
 const User = require("../models/User");
 const createComplaint = async (req, res) => {
 
-    const { title, description, category, roomNumber } = req.body;
+    try {
 
-    let department = category;
+        const {
+            title,
+            description,
+            category,
+            roomNumber
+        } = req.body;
 
-    if (category === "Plumbing") {
-        department = "Plumbing";
+
+        // Determine department
+
+        let department;
+
+
+        if (category === "Plumbing") {
+
+            department = "Plumbing";
+
+        }
+        else if (category === "Electrical") {
+
+            department = "Electrical";
+
+        }
+        else if (category === "Cleaning") {
+
+            department = "Cleaning";
+
+        }
+        else if (category === "Internet") {
+
+            department = "Internet";
+
+        }
+        else if (category === "Furniture") {
+
+            department = "Maintenance";
+
+        }
+
+
+        // Find workers in the department
+
+        const workers = await User.find({
+
+            role: "worker",
+
+            department: department
+
+        }).lean();
+
+
+        let selectedWorker = null;
+
+
+        // Find least-loaded worker
+
+        if (workers.length > 0) {
+
+            let lowestActiveTasks = Infinity;
+
+
+            for (const worker of workers) {
+
+                const activeTasks =
+                    await Complaint.countDocuments({
+
+                        assignedTo: worker._id,
+
+                        status: {
+                            $in: [
+                                "Pending",
+                                "In Progress"
+                            ]
+                        }
+
+                    });
+
+
+                if (activeTasks < lowestActiveTasks) {
+
+                    lowestActiveTasks = activeTasks;
+
+                    selectedWorker = worker;
+
+                }
+
+            }
+
+        }
+
+
+        // Create complaint
+
+        await Complaint.create({
+
+            title,
+
+            description,
+
+            category,
+
+            roomNumber,
+
+            user: req.user.id,
+
+            assignedTo: selectedWorker
+                ? selectedWorker._id
+                : null,
+
+            assignedAt: selectedWorker
+                ? new Date()
+                : null
+
+        });
+
+
+        res.redirect("/dashboard");
+
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.send(
+            "Something went wrong while creating the complaint."
+        );
+
     }
-    else if (category === "Electrical") {
-        department = "Electrical";
-    }
-    else if (category === "Cleaning") {
-        department = "Cleaning";
-    }
-    else if (category === "Internet") {
-        department = "Internet";
-    }
-
-    const worker = await User.findOne({
-        role: "worker",
-        department: department
-    });
-
-    const complaint = await Complaint.create({
-        title,
-        description,
-        category,
-        roomNumber,
-        user: req.user.id,
-        assignedTo: worker ? worker._id : null
-    });
-
-    res.redirect("/dashboard");
 
 };
 const getComplaintForm = (req, res) => {
@@ -98,7 +196,9 @@ const updateComplaint = async (req, res) => {
     if (!complaint) {
         return res.send("Complaint not found");
     }
-
+    if (complaint.user.toString() !== req.user.id) {
+    return res.send("Unauthorized");
+    }
     if (complaint.status !== "Pending") {
         return res.send("Only pending complaints can be edited.");
     }
@@ -136,59 +236,144 @@ const deleteComplaint = async (req, res) => {
 };
 const startTask = async (req, res) => {
 
-    const complaint = await Complaint.findById(req.params.id);
+    try {
 
-    if (!complaint) {
-        return res.send("Complaint not found");
+        const complaint = await Complaint.findById(
+            req.params.id
+        );
+
+
+        if (!complaint) {
+
+            return res.send("Complaint not found");
+
+        }
+
+
+        if (!complaint.assignedTo) {
+
+            return res.send("No worker assigned");
+
+        }
+
+
+        if (
+            complaint.assignedTo.toString() !==
+            req.user.id
+        ) {
+
+            return res.send("Unauthorized");
+
+        }
+
+
+        if (complaint.status !== "Pending") {
+
+            return res.send(
+                "Task cannot be started."
+            );
+
+        }
+
+
+        // Update status
+
+        complaint.status = "In Progress";
+
+
+        // Record start time
+
+        complaint.startedAt = new Date();
+
+
+        await complaint.save();
+
+
+        res.redirect("/worker");
+
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.send(
+            "Something went wrong while starting the task."
+        );
+
     }
 
-    if (!complaint.assignedTo) {
-        return res.send("No worker assigned");
-    }
-
-    if (complaint.assignedTo.toString() !== req.user.id) {
-        return res.send("Unauthorized");
-    }
-
-    if (complaint.status !== "Pending") {
-        return res.send("Task cannot be started.");
-    }
-
-    complaint.status = "In Progress";
-
-    await complaint.save();
-
-    res.redirect("/worker");
 };
 
 
 const completeTask = async (req, res) => {
 
-    const complaint = await Complaint.findById(req.params.id);
+    try {
 
-    if (!complaint) {
-        return res.send("Complaint not found");
+        const complaint = await Complaint.findById(
+            req.params.id
+        );
+
+
+        if (!complaint) {
+
+            return res.send("Complaint not found");
+
+        }
+
+
+        if (!complaint.assignedTo) {
+
+            return res.send("No worker assigned");
+
+        }
+
+
+        if (
+            complaint.assignedTo.toString() !==
+            req.user.id
+        ) {
+
+            return res.send("Unauthorized");
+
+        }
+
+
+        if (complaint.status !== "In Progress") {
+
+            return res.send(
+                "Task must be in progress first."
+            );
+
+        }
+
+
+        // Update status
+
+        complaint.status = "Resolved";
+
+
+        // Record resolution time
+
+        complaint.resolvedAt = new Date();
+
+
+        await complaint.save();
+
+
+        res.redirect("/worker");
+
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.send(
+            "Something went wrong while completing the task."
+        );
+
     }
 
-    if (!complaint.assignedTo) {
-        return res.send("No worker assigned");
-    }
-
-    if (complaint.assignedTo.toString() !== req.user.id) {
-        return res.send("Unauthorized");
-    }
-
-    if (complaint.status !== "In Progress") {
-        return res.send("Task must be in progress first.");
-    }
-
-    complaint.status = "Resolved";
-
-    await complaint.save();
-
-    res.redirect("/worker");
 };
-
 module.exports = {
     getComplaintForm,
     createComplaint,

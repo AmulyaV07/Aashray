@@ -58,6 +58,41 @@ const averageRating = ratingData.length
     });
 
 };
+const getWorkers = async (req, res) => {
+
+    const workers = await User.find({
+        role: "worker"
+    }).lean();
+
+
+    for (const worker of workers) {
+
+        worker.totalTasks = await Complaint.countDocuments({
+            assignedTo: worker._id
+        });
+
+
+        worker.activeTasks = await Complaint.countDocuments({
+            assignedTo: worker._id,
+            status: {
+                $in: ["Pending", "In Progress"]
+            }
+        });
+
+
+        worker.resolvedTasks = await Complaint.countDocuments({
+            assignedTo: worker._id,
+            status: "Resolved"
+        });
+
+    }
+
+
+    res.render("admin/workers", {
+        workers
+    });
+
+};
 const createWorker = async (req, res) => {
 
     try {
@@ -104,5 +139,6 @@ const createWorker = async (req, res) => {
 module.exports = {
     getAdminDashboard,
     getAddWorkerPage,
-    createWorker
+    createWorker,
+    getWorkers
 };

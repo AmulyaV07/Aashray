@@ -8,11 +8,12 @@ const verifyAdmin = require("../middlewares/adminMiddleware");
 const {
     getAdminDashboard,
     getAddWorkerPage,
-    createWorker
+    createWorker,
+    getWorkers
 } = require("../controllers/adminController");
 
 router.get("/", verifyToken, verifyAdmin, getAdminDashboard);
 router.get("/workers/add", verifyToken, verifyAdmin, getAddWorkerPage);
 router.post("/workers", verifyToken, verifyAdmin, createWorker);
-
+router.get("/workers", verifyToken, verifyAdmin, getWorkers);
 module.exports = router;

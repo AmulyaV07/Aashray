@@ -2,18 +2,24 @@
 <html lang="en">
 
 <head>
+
     <title>Worker Dashboard</title>
 
     <%- include("../partials/head") %>
+
 </head>
+
 
 <body class="bg-slate-950 text-white min-h-screen">
 
     <%- include("../partials/navbar") %>
 
+
     <main class="max-w-7xl mx-auto px-6 py-12">
 
+
         <!-- Header -->
+
         <div class="mb-10">
 
             <p class="text-blue-400 font-medium mb-2">
@@ -32,9 +38,14 @@
 
 
         <!-- Stats -->
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
 
+
+            <!-- Assigned -->
+
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
                 <p class="text-slate-400 text-sm">
                     Assigned Tasks
                 </p>
@@ -42,10 +53,14 @@
                 <p class="text-3xl font-bold mt-2">
                     <%= tasks.length %>
                 </p>
+
             </div>
 
 
+            <!-- Pending -->
+
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
                 <p class="text-slate-400 text-sm">
                     Pending
                 </p>
@@ -53,10 +68,14 @@
                 <p class="text-3xl font-bold mt-2">
                     <%= tasks.filter(task => task.status === "Pending").length %>
                 </p>
+
             </div>
 
 
+            <!-- In Progress -->
+
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
                 <p class="text-slate-400 text-sm">
                     In Progress
                 </p>
@@ -64,13 +83,16 @@
                 <p class="text-3xl font-bold mt-2">
                     <%= tasks.filter(task => task.status === "In Progress").length %>
                 </p>
+
             </div>
 
         </div>
 
 
         <!-- Tasks -->
+
         <div>
+
 
             <div class="mb-5">
 
@@ -87,6 +109,7 @@
 
             <% if (tasks.length === 0) { %>
 
+
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-10 text-center">
 
                     <h3 class="text-lg font-semibold">
@@ -99,24 +122,33 @@
 
                 </div>
 
+
             <% } else { %>
 
-                <div class="space-y-4">
+
+                <div class="space-y-5">
+
 
                     <% tasks.forEach((task) => { %>
 
+
                         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition">
 
-                            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+
+                            <div class="flex flex-col lg:flex-row lg:justify-between gap-6">
+
 
                                 <!-- Complaint Information -->
+
                                 <div class="flex-1">
 
-                                    <div class="flex items-center gap-3 mb-2">
+
+                                    <div class="flex flex-wrap items-center gap-3 mb-2">
 
                                         <h3 class="text-xl font-semibold">
                                             <%= task.title %>
                                         </h3>
+
 
                                         <span class="text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300">
                                             <%= task.category %>
@@ -133,25 +165,126 @@
                                     <% if (task.user) { %>
 
                                         <p class="text-sm text-slate-500 mt-4">
+
                                             Raised by
+
                                             <span class="text-slate-300">
                                                 <%= task.user.name %>
                                             </span>
+
                                         </p>
 
                                     <% } %>
+
+
+                                    <!-- Timeline -->
+
+                                    <div class="mt-6 pt-5 border-t border-slate-800">
+
+
+                                        <p class="text-xs text-slate-500 uppercase tracking-wide mb-4">
+                                            Task Timeline
+                                        </p>
+
+
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+
+                                            <!-- Assigned -->
+
+                                            <div>
+
+                                                <p class="text-sm text-slate-400">
+                                                    Assigned
+                                                </p>
+
+                                                <% if (task.assignedAt) { %>
+
+                                                    <p class="text-sm text-slate-200 mt-1">
+                                                        <%= new Date(task.assignedAt).toLocaleString("en-IN") %>
+                                                    </p>
+
+                                                <% } else { %>
+
+                                                    <p class="text-sm text-slate-500 mt-1">
+                                                        Not available
+                                                    </p>
+
+                                                <% } %>
+
+                                            </div>
+
+
+                                            <!-- Started -->
+
+                                            <div>
+
+                                                <p class="text-sm text-slate-400">
+                                                    Started
+                                                </p>
+
+                                                <% if (task.startedAt) { %>
+
+                                                    <p class="text-sm text-slate-200 mt-1">
+                                                        <%= new Date(task.startedAt).toLocaleString("en-IN") %>
+                                                    </p>
+
+                                                <% } else { %>
+
+                                                    <p class="text-sm text-slate-500 mt-1">
+                                                        Not started
+                                                    </p>
+
+                                                <% } %>
+
+                                            </div>
+
+
+                                            <!-- Resolved -->
+
+                                            <div>
+
+                                                <p class="text-sm text-slate-400">
+                                                    Resolved
+                                                </p>
+
+                                                <% if (task.resolvedAt) { %>
+
+                                                    <p class="text-sm text-slate-200 mt-1">
+                                                        <%= new Date(task.resolvedAt).toLocaleString("en-IN") %>
+                                                    </p>
+
+                                                <% } else { %>
+
+                                                    <p class="text-sm text-slate-500 mt-1">
+                                                        Not resolved
+                                                    </p>
+
+                                                <% } %>
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
 
                                 </div>
 
 
                                 <!-- Status + Action -->
-                                <div class="flex flex-col items-start md:items-end gap-4">
+
+                                <div class="flex flex-col items-start lg:items-end gap-4">
+
 
                                     <% if (task.status === "Pending") { %>
+
 
                                         <span class="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
                                             Pending
                                         </span>
+
 
                                         <form
                                             action="/complaints/<%= task._id %>/start"
@@ -170,9 +303,11 @@
 
                                     <% } else if (task.status === "In Progress") { %>
 
+
                                         <span class="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
                                             In Progress
                                         </span>
+
 
                                         <form
                                             action="/complaints/<%= task._id %>/complete"
@@ -191,29 +326,41 @@
 
                                     <% } else { %>
 
+
                                         <span class="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-green-500/10 text-green-400 border border-green-500/20">
                                             <%= task.status %>
                                         </span>
 
+
                                     <% } %>
+
 
                                 </div>
 
+
                             </div>
+
 
                         </div>
 
+
                     <% }) %>
+
 
                 </div>
 
+
             <% } %>
+
 
         </div>
 
+
     </main>
 
+
     <%- include("../partials/footer") %>
+
 
 </body>
 

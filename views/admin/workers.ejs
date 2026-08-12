@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Worker Management</title>
+
+    <%- include("../partials/head") %>
+
+</head>
+
+
+<body class="bg-slate-950 text-white min-h-screen">
+
+    <%- include("../partials/navbar") %>
+
+
+    <main class="max-w-7xl mx-auto py-10 px-6">
+
+
+        <!-- Header -->
+
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-10">
+
+            <div>
+
+                <p class="text-blue-400 font-medium mb-2">
+                    AASHRAY ADMIN
+                </p>
+
+                <h1 class="text-4xl font-bold">
+                    Worker Management
+                </h1>
+
+                <p class="text-slate-400 mt-2">
+                    Monitor workers and their current workload.
+                </p>
+
+            </div>
+
+
+            <a
+                href="/admin/workers/add"
+                class="inline-flex items-center justify-center px-5 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition"
+            >
+                + Add Worker
+            </a>
+
+        </div>
+
+
+        <% if (workers.length === 0) { %>
+
+
+            <!-- No Workers -->
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-10 text-center">
+
+                <h2 class="text-xl font-semibold">
+                    No Workers Found
+                </h2>
+
+                <p class="text-slate-400 mt-2">
+                    Create a worker to start assigning complaints.
+                </p>
+
+                <a
+                    href="/admin/workers/add"
+                    class="inline-block mt-6 px-5 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium"
+                >
+                    Create Worker
+                </a>
+
+            </div>
+
+
+        <% } else { %>
+
+
+            <!-- Workers -->
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+
+                <% workers.forEach((worker) => { %>
+
+
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+
+
+                        <!-- Worker Header -->
+
+                        <div class="flex items-start justify-between gap-4">
+
+                            <div>
+
+                                <h2 class="text-xl font-semibold">
+                                    <%= worker.name %>
+                                </h2>
+
+                                <p class="text-slate-500 text-sm mt-1">
+                                    <%= worker.email %>
+                                </p>
+
+                            </div>
+
+
+                            <div class="w-11 h-11 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 font-semibold">
+
+                                <%= worker.name.charAt(0).toUpperCase() %>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Department -->
+
+                        <div class="mt-6">
+
+                            <p class="text-xs text-slate-500 uppercase tracking-wide">
+                                Department
+                            </p>
+
+                            <span class="inline-flex mt-2 px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-sm">
+                                <%= worker.department || "Not assigned" %>
+                            </span>
+
+                        </div>
+
+
+                        <!-- Task Statistics -->
+
+                        <div class="grid grid-cols-3 gap-3 mt-6">
+
+
+                            <!-- Active -->
+
+                            <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+
+                                <p class="text-xs text-slate-500">
+                                    ACTIVE
+                                </p>
+
+                                <p class="text-2xl font-bold mt-1">
+                                    <%= worker.activeTasks %>
+                                </p>
+
+                            </div>
+
+
+                            <!-- Resolved -->
+
+                            <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+
+                                <p class="text-xs text-slate-500">
+                                    RESOLVED
+                                </p>
+
+                                <p class="text-2xl font-bold mt-1">
+                                    <%= worker.resolvedTasks %>
+                                </p>
+
+                            </div>
+
+
+                            <!-- Total -->
+
+                            <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+
+                                <p class="text-xs text-slate-500">
+                                    TOTAL
+                                </p>
+
+                                <p class="text-2xl font-bold mt-1">
+                                    <%= worker.totalTasks %>
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- Workload -->
+
+                        <div class="mt-6 pt-5 border-t border-slate-800">
+
+
+                            <% if (worker.activeTasks === 0) { %>
+
+                                <div class="flex items-center justify-between">
+
+                                    <p class="text-sm text-slate-400">
+                                        Current workload
+                                    </p>
+
+                                    <span class="text-sm text-green-400">
+                                        Available
+                                    </span>
+
+                                </div>
+
+
+                            <% } else if (worker.activeTasks <= 3) { %>
+
+                                <div class="flex items-center justify-between">
+
+                                    <p class="text-sm text-slate-400">
+                                        Current workload
+                                    </p>
+
+                                    <span class="text-sm text-green-400">
+                                        Light
+                                    </span>
+
+                                </div>
+
+
+                            <% } else if (worker.activeTasks <= 6) { %>
+
+                                <div class="flex items-center justify-between">
+
+                                    <p class="text-sm text-slate-400">
+                                        Current workload
+                                    </p>
+
+                                    <span class="text-sm text-yellow-400">
+                                        Moderate
+                                    </span>
+
+                                </div>
+
+
+                            <% } else { %>
+
+                                <div class="flex items-center justify-between">
+
+                                    <p class="text-sm text-slate-400">
+                                        Current workload
+                                    </p>
+
+                                    <span class="text-sm text-red-400">
+                                        Heavy
+                                    </span>
+
+                                </div>
+
+                            <% } %>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                <% }) %>
+
+
+            </div>
+
+
+        <% } %>
+
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+
+</body>
+
+</html>
