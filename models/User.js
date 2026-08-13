@@ -44,6 +44,11 @@ const userSchema = new mongoose.Schema(
                 "Maintenance"
             ],
             default: null
+        },
+
+        isActive: {
+            type: Boolean,
+            default: true
         }
     },
     {

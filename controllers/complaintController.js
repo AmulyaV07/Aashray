@@ -47,12 +47,10 @@ const createComplaint = async (req, res) => {
         // Find workers in the department
 
         const workers = await User.find({
-
             role: "worker",
-
-            department: department
-
-        }).lean();
+            department: department,
+            isActive: true
+    }).lean();
 
 
         let selectedWorker = null;

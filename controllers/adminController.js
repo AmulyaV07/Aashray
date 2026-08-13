@@ -135,10 +135,110 @@ const createWorker = async (req, res) => {
     }
 
 };
+const getEditWorkerPage = async (req, res) => {
 
+    try {
+
+        const worker = await User.findOne({
+            _id: req.params.id,
+            role: "worker"
+        });
+
+        if (!worker) {
+            return res.send("Worker not found");
+        }
+
+        res.render("admin/editWorker", {
+            worker
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.send("Something went wrong");
+
+    }
+
+};
+
+
+const updateWorker = async (req, res) => {
+
+    try {
+
+        const { name, email, department } = req.body;
+
+        if (!name || !email || !department) {
+            return res.send("All fields are required");
+        }
+
+        const worker = await User.findOne({
+            _id: req.params.id,
+            role: "worker"
+        });
+
+        if (!worker) {
+            return res.send("Worker not found");
+        }
+
+        const existingUser = await User.findOne({
+            email,
+            _id: { $ne: req.params.id }
+        });
+
+        if (existingUser) {
+            return res.send("Email already registered");
+        }
+
+        worker.name = name;
+        worker.email = email;
+        worker.department = department;
+
+        await worker.save();
+
+        res.redirect("/admin/workers");
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.send("Something went wrong");
+
+    }
+
+};
+const toggleWorkerStatus = async (req, res) => {
+    try {
+        const worker = await User.findOne({
+            _id: req.params.id,
+            role: "worker"
+        });
+
+        if (!worker) {
+            return res.send("Worker not found");
+        }
+
+        worker.isActive = !worker.isActive;
+
+        await worker.save();
+
+        res.redirect("/admin/workers");
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.send("Something went wrong");
+
+    }
+};
 module.exports = {
     getAdminDashboard,
     getAddWorkerPage,
     createWorker,
-    getWorkers
+    getWorkers,
+    getEditWorkerPage,
+    updateWorker,
+    toggleWorkerStatus
 };

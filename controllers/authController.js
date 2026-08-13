@@ -84,7 +84,19 @@ const loginUser = async (req, res) => {
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
-        res.redirect("/dashboard");
+
+        // Role-based redirect
+
+        if (user.role === "admin") {
+            return res.redirect("/admin");
+        }
+
+        if (user.role === "worker") {
+            return res.redirect("/worker");
+        }
+
+        return res.redirect("/dashboard");
+
 
     } catch (error) {
 
@@ -95,7 +107,6 @@ const loginUser = async (req, res) => {
     }
 
 };
-
 const logoutUser = (req, res) => {
 
     res.clearCookie("token");
