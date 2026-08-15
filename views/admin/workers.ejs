@@ -3,360 +3,370 @@
 
 <head>
 
-    <title>Worker Management</title>
+    <title>Worker Management | AASHRAY</title>
 
     <%- include("../partials/head") %>
 
 </head>
 
 
-<body class="bg-slate-950 text-white min-h-screen">
+<body
+    class="bg-stone-900 text-stone-200 font-[Inter] min-h-screen antialiased selection:bg-teal-100 selection:text-teal-900">
 
     <%- include("../partials/navbar") %>
 
 
-    <main class="max-w-7xl mx-auto py-10 px-6">
+        <main class="max-w-7xl mx-auto py-12 px-6 lg:px-8">
 
 
-        <!-- Header -->
+            <!-- Header -->
 
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-10">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
 
-            <div>
+                <div>
 
-                <p class="text-blue-400 font-medium mb-2">
-                    AASHRAY ADMIN
-                </p>
+                    <div
+                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-600 text-xs font-bold tracking-widest mb-3 uppercase border border-teal-100 shadow-sm">
+                        Admin Portal
+                    </div>
 
-                <h1 class="text-4xl font-bold">
-                    Worker Management
-                </h1>
+                    <h1 class="text-4xl font-extrabold tracking-tight text-stone-100">
+                        Worker Management
+                    </h1>
 
-                <p class="text-slate-400 mt-2">
-                    Monitor workers and their current workload.
-                </p>
+                    <p class="text-stone-300 mt-2 text-lg">
+                        Monitor workers and their current workload.
+                    </p>
 
-            </div>
-
-
-            <a
-                href="/admin/workers/add"
-                class="inline-flex items-center justify-center px-5 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition"
-            >
-                + Add Worker
-            </a>
-
-        </div>
-
-
-        <!-- Worker Count -->
-
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl px-6 py-5 mb-6">
-
-            <p class="text-sm text-slate-400">
-                Total Workers
-            </p>
-
-            <p class="text-3xl font-bold mt-1">
-                <%= workers.length %>
-            </p>
-
-        </div>
-
-
-        <% if (workers.length === 0) { %>
-
-
-            <!-- No Workers -->
-
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-10 text-center">
-
-                <div class="text-4xl mb-4">
-                    👷
                 </div>
 
-                <h2 class="text-xl font-semibold">
-                    No Workers Found
-                </h2>
 
-                <p class="text-slate-400 mt-2">
-                    Create a worker to start assigning complaints.
-                </p>
-
-                <a
-                    href="/admin/workers/add"
-                    class="inline-block mt-6 px-5 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition"
-                >
-                    Create Worker
+                <a href="/admin/workers/add"
+                    class="inline-flex items-center justify-center px-6 py-3.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-bold transition-all duration-300 shadow-lg shadow-teal-600/20 hover:shadow-teal-600/40 hover:-translate-y-0.5">
+                    + Add Worker
                 </a>
 
             </div>
 
 
-        <% } else { %>
+            <!-- Worker Count -->
+
+            <div
+                class="bg-stone-900 border border-stone-800 rounded-[1.5rem] px-8 py-6 mb-8 shadow-sm flex items-center justify-between">
+
+                <p class="text-stone-300 font-bold uppercase tracking-widest text-sm">
+                    Total Workers
+                </p>
+
+                <p class="text-4xl font-extrabold text-stone-100">
+                    <%= workers.length %>
+                </p>
+
+            </div>
 
 
-            <!-- Workers -->
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <% if (workers.length===0) { %>
 
 
-                <% workers.forEach((worker) => { %>
+                <!-- No Workers -->
+
+                <div class="bg-stone-900 border border-stone-800 rounded-[2rem] p-12 text-center shadow-sm">
+
+                    <div
+                        class="w-24 h-24 bg-stone-900 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
+                        👷
+                    </div>
+
+                    <h2 class="text-2xl font-bold text-stone-200">
+                        No Workers Found
+                    </h2>
+
+                    <p class="text-stone-300 mt-2 text-lg">
+                        Create a worker to start assigning complaints.
+                    </p>
+
+                    <a href="/admin/workers/add"
+                        class="inline-block mt-8 px-6 py-3.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-bold transition-all duration-300 shadow-lg shadow-teal-600/20 hover:shadow-teal-600/40 hover:-translate-y-0.5">
+                        Create Worker
+                    </a>
+
+                </div>
 
 
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition">
+                <% } else { %>
 
 
-                        <!-- Worker Header -->
+                    <!-- Workers -->
 
-                        <div class="flex items-start justify-between gap-4">
-
-                            <div>
-
-                                <div class="flex items-center gap-3">
-
-                                    <h2 class="text-xl font-semibold">
-                                        <%= worker.name %>
-                                    </h2>
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
 
 
-                                    <% if (worker.isActive !== false) { %>
+                        <% workers.forEach((worker)=> { %>
 
-                                        <span class="inline-flex px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs text-green-400">
+
+                            <div
+                                class="bg-stone-900 border border-stone-800 rounded-[2rem] p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+
+                                <div
+                                    class="absolute top-0 right-0 w-32 h-32 bg-stone-900 rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/2 pointer-events-none">
+                                </div>
+
+                                <!-- Worker Header -->
+
+                                <div class="flex items-start justify-between gap-4 relative z-10">
+
+                                    <div>
+
+                                        <div class="flex flex-wrap items-center gap-3">
+
+                                            <h2 class="text-2xl font-extrabold text-stone-100">
+                                                <%= worker.name %>
+                                            </h2>
+
+
+                                            <% if (worker.isActive !==false) { %>
+
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-xs font-bold text-emerald-600 shadow-sm">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5"></span>
+                                                    Active
+                                                </span>
+
+                                                <% } else { %>
+
+                                                    <span
+                                                        class="inline-flex items-center px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-rose-600 shadow-sm">
+                                                        <span
+                                                            class="w-1.5 h-1.5 rounded-full bg-rose-500 mr-1.5"></span>
+                                                        Deactivated
+                                                    </span>
+
+                                                    <% } %>
+
+                                        </div>
+
+
+                                        <p class="text-stone-300 font-medium mt-1">
+                                            <%= worker.email %>
+                                        </p>
+
+                                    </div>
+
+
+                                    <div
+                                        class="w-14 h-14 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600 font-extrabold text-xl shadow-sm shrink-0">
+
+                                        <%= worker.name.charAt(0).toUpperCase() %>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Department -->
+
+                                <div class="mt-8 relative z-10">
+
+                                    <p class="text-xs text-stone-300 font-bold uppercase tracking-widest">
+                                        Department
+                                    </p>
+
+                                    <span
+                                        class="inline-flex mt-2 px-4 py-1.5 rounded-full bg-stone-900 text-stone-200 font-bold text-sm border border-stone-800">
+                                        <%= worker.department || "Not assigned" %>
+                                    </span>
+
+                                </div>
+
+
+                                <!-- Task Statistics -->
+
+                                <div class="grid grid-cols-3 gap-4 mt-8 relative z-10">
+
+
+                                    <!-- Active -->
+
+                                    <div class="bg-stone-900 border border-stone-800 rounded-xl p-5 text-center">
+
+                                        <p class="text-[10px] text-stone-300 font-bold uppercase tracking-widest">
                                             Active
-                                        </span>
+                                        </p>
 
-                                    <% } else { %>
+                                        <p class="text-3xl font-extrabold text-stone-200 mt-1">
+                                            <%= worker.activeTasks %>
+                                        </p>
 
-                                        <span class="inline-flex px-2.5 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-xs text-red-400">
-                                            Deactivated
-                                        </span>
+                                    </div>
 
-                                    <% } %>
+
+                                    <!-- Resolved -->
+
+                                    <div class="bg-stone-900 border border-stone-800 rounded-xl p-5 text-center">
+
+                                        <p class="text-[10px] text-stone-300 font-bold uppercase tracking-widest">
+                                            Resolved
+                                        </p>
+
+                                        <p class="text-3xl font-extrabold text-stone-200 mt-1">
+                                            <%= worker.resolvedTasks %>
+                                        </p>
+
+                                    </div>
+
+
+                                    <!-- Total -->
+
+                                    <div class="bg-stone-900 border border-stone-800 rounded-xl p-5 text-center">
+
+                                        <p class="text-[10px] text-stone-300 font-bold uppercase tracking-widest">
+                                            Total
+                                        </p>
+
+                                        <p class="text-3xl font-extrabold text-stone-200 mt-1">
+                                            <%= worker.totalTasks %>
+                                        </p>
+
+                                    </div>
+
 
                                 </div>
 
 
-                                <p class="text-slate-500 text-sm mt-1">
-                                    <%= worker.email %>
-                                </p>
+                                <!-- Workload -->
 
-                            </div>
+                                <div class="mt-8 pt-6 border-t border-stone-800 relative z-10">
 
 
-                            <div class="w-11 h-11 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 font-semibold">
+                                    <% if (worker.activeTasks===0) { %>
 
-                                <%= worker.name.charAt(0).toUpperCase() %>
+                                        <div
+                                            class="flex items-center justify-between bg-slate-50/50 p-4 rounded-xl border border-emerald-100/50">
 
-                            </div>
+                                            <p class="text-sm font-bold text-stone-200">
+                                                Current workload
+                                            </p>
 
-                        </div>
+                                            <span
+                                                class="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-600">
+                                                <span class="text-lg">🟢</span> Available
+                                            </span>
 
-
-                        <!-- Department -->
-
-                        <div class="mt-6">
-
-                            <p class="text-xs text-slate-500 uppercase tracking-wide">
-                                Department
-                            </p>
-
-                            <span class="inline-flex mt-2 px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-sm">
-                                <%= worker.department || "Not assigned" %>
-                            </span>
-
-                        </div>
+                                        </div>
 
 
-                        <!-- Task Statistics -->
+                                        <% } else if (worker.activeTasks <=3) { %>
 
-                        <div class="grid grid-cols-3 gap-3 mt-6">
+                                            <div
+                                                class="flex items-center justify-between bg-slate-50/50 p-4 rounded-xl border border-blue-100/50">
 
+                                                <p class="text-sm font-bold text-stone-200">
+                                                    Current workload
+                                                </p>
 
-                            <!-- Active -->
+                                                <span
+                                                    class="inline-flex items-center gap-1.5 text-sm font-bold text-blue-600">
+                                                    <span class="text-lg">🟡</span> Light
+                                                </span>
 
-                            <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
-
-                                <p class="text-xs text-slate-500">
-                                    ACTIVE
-                                </p>
-
-                                <p class="text-2xl font-bold mt-1">
-                                    <%= worker.activeTasks %>
-                                </p>
-
-                            </div>
+                                            </div>
 
 
-                            <!-- Resolved -->
+                                            <% } else if (worker.activeTasks <=6) { %>
 
-                            <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                                                <div
+                                                    class="flex items-center justify-between bg-slate-50/50 p-4 rounded-xl border border-amber-100/50">
 
-                                <p class="text-xs text-slate-500">
-                                    RESOLVED
-                                </p>
+                                                    <p class="text-sm font-bold text-stone-200">
+                                                        Current workload
+                                                    </p>
 
-                                <p class="text-2xl font-bold mt-1">
-                                    <%= worker.resolvedTasks %>
-                                </p>
+                                                    <span
+                                                        class="inline-flex items-center gap-1.5 text-sm font-bold text-amber-600">
+                                                        <span class="text-lg">🟠</span> Moderate
+                                                    </span>
 
-                            </div>
-
-
-                            <!-- Total -->
-
-                            <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
-
-                                <p class="text-xs text-slate-500">
-                                    TOTAL
-                                </p>
-
-                                <p class="text-2xl font-bold mt-1">
-                                    <%= worker.totalTasks %>
-                                </p>
-
-                            </div>
+                                                </div>
 
 
-                        </div>
+                                                <% } else { %>
 
+                                                    <div
+                                                        class="flex items-center justify-between bg-rose-50/50 p-4 rounded-xl border border-rose-100/50">
 
-                        <!-- Workload -->
+                                                        <p class="text-sm font-bold text-stone-200">
+                                                            Current workload
+                                                        </p>
 
-                        <div class="mt-6 pt-5 border-t border-slate-800">
+                                                        <span
+                                                            class="inline-flex items-center gap-1.5 text-sm font-bold text-rose-600">
+                                                            <span class="text-lg">🔴</span> Heavy
+                                                        </span>
 
+                                                    </div>
 
-                            <% if (worker.activeTasks === 0) { %>
+                                                    <% } %>
 
-                                <div class="flex items-center justify-between">
-
-                                    <p class="text-sm text-slate-400">
-                                        Current workload
-                                    </p>
-
-                                    <span class="inline-flex px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-sm text-green-400">
-                                        Available
-                                    </span>
 
                                 </div>
 
 
-                            <% } else if (worker.activeTasks <= 3) { %>
+                                <!-- Actions -->
 
-                                <div class="flex items-center justify-between">
+                                <div class="flex gap-4 mt-6 relative z-10">
 
-                                    <p class="text-sm text-slate-400">
-                                        Current workload
-                                    </p>
 
-                                    <span class="inline-flex px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-sm text-green-400">
-                                        Light
-                                    </span>
+                                    <!-- Edit -->
+
+                                    <a href="/admin/workers/<%= worker._id %>/edit"
+                                        class="flex-1 inline-flex items-center justify-center px-4 py-3.5 bg-stone-900 hover:bg-stone-200 text-stone-200 rounded-xl text-sm font-bold transition-colors">
+                                        Edit Worker
+                                    </a>
+
+
+                                    <!-- Activate / Deactivate -->
+
+                                    <form action="/admin/workers/<%= worker._id %>/toggle-status" method="POST"
+                                        class="flex-1">
+
+                                        <% if (worker.isActive !==false) { %>
+
+                                            <button type="submit"
+                                                onclick="return confirm('Are you sure you want to deactivate this worker?')"
+                                                class="w-full px-4 py-3.5 bg-stone-900 hover:bg-rose-50 border border-rose-200 text-rose-600 rounded-xl text-sm font-bold transition-colors shadow-sm">
+                                                Deactivate
+                                            </button>
+
+                                            <% } else { %>
+
+                                                <button type="submit"
+                                                    class="w-full px-4 py-3.5 bg-stone-900 hover:bg-emerald-50 border border-emerald-200 text-emerald-600 rounded-xl text-sm font-bold transition-colors shadow-sm">
+                                                    Activate
+                                                </button>
+
+                                                <% } %>
+
+                                    </form>
+
 
                                 </div>
 
 
-                            <% } else if (worker.activeTasks <= 6) { %>
-
-                                <div class="flex items-center justify-between">
-
-                                    <p class="text-sm text-slate-400">
-                                        Current workload
-                                    </p>
-
-                                    <span class="inline-flex px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-sm text-yellow-400">
-                                        Moderate
-                                    </span>
-
-                                </div>
+                            </div>
 
 
-                            <% } else { %>
-
-                                <div class="flex items-center justify-between">
-
-                                    <p class="text-sm text-slate-400">
-                                        Current workload
-                                    </p>
-
-                                    <span class="inline-flex px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-sm text-red-400">
-                                        Heavy
-                                    </span>
-
-                                </div>
-
-                            <% } %>
-
-
-                        </div>
-
-
-                        <!-- Actions -->
-
-                        <div class="flex gap-3 mt-5">
-
-
-                            <!-- Edit -->
-
-                            <a
-                                href="/admin/workers/<%= worker._id %>/edit"
-                                class="flex-1 inline-flex items-center justify-center px-4 py-2.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-sm font-medium transition"
-                            >
-                                Edit Worker
-                            </a>
-
-
-                            <!-- Activate / Deactivate -->
-
-                            <form
-                                action="/admin/workers/<%= worker._id %>/toggle-status"
-                                method="POST"
-                                class="flex-1"
-                            >
-
-                                <% if (worker.isActive !== false) { %>
-
-                                    <button
-                                        type="submit"
-                                        onclick="return confirm('Are you sure you want to deactivate this worker?')"
-                                        class="w-full px-4 py-2.5 bg-red-600/10 hover:bg-red-600/20 border border-red-500/20 text-red-400 rounded-lg text-sm font-medium transition"
-                                    >
-                                        Deactivate
-                                    </button>
-
-                                <% } else { %>
-
-                                    <button
-                                        type="submit"
-                                        class="w-full px-4 py-2.5 bg-green-600/10 hover:bg-green-600/20 border border-green-500/20 text-green-400 rounded-lg text-sm font-medium transition"
-                                    >
-                                        Activate
-                                    </button>
-
-                                <% } %>
-
-                            </form>
-
-
-                        </div>
+                            <% }) %>
 
 
                     </div>
 
 
-                <% }) %>
+                    <% } %>
 
 
-            </div>
+        </main>
 
 
-        <% } %>
-
-
-    </main>
-
-
-    <%- include("../partials/footer") %>
+        <%- include("../partials/footer") %>
 
 
 </body>

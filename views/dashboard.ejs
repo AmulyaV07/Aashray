@@ -3,89 +3,125 @@
 
 <head>
 
-    <title>Dashboard</title>
+    <title>Dashboard | AASHRAY</title>
 
     <%- include("./partials/head") %>
 
 </head>
 
-<body class="bg-slate-950 text-white">
+<body class="bg-stone-900 text-stone-200 font-[Inter] antialiased selection:bg-teal-100 selection:text-teal-900">
 
     <%- include("./partials/navbar") %>
 
-    <main class="max-w-7xl mx-auto py-10 px-6">
-
-        <h1 class="text-4xl font-bold">
-            Welcome, <%= user.name %> 👋
-        </h1>
-
-        <p class="text-slate-400 mt-2">
-            Here's an overview of your complaints.
-        </p>
+    <main class="max-w-7xl mx-auto py-12 px-6 lg:px-8">
+        
+        <header class="mb-10">
+            <h1 class="text-4xl font-extrabold text-stone-100 tracking-tight">
+                Welcome back, <%= user.name %> <span class="wave">👋</span>
+            </h1>
+            <p class="text-stone-300 mt-3 text-lg">
+                Here's an overview of your hostel complaints and requests.
+            </p>
+        </header>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
 
-    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
-        <p class="text-slate-400">Pending</p>
-        <h2 class="text-4xl font-bold mt-2">
+    <div class="bg-stone-900 border border-stone-800 rounded-[1.5rem] p-6 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-amber-500">
+                ⏳
+            </div>
+            <p class="text-stone-300 font-medium">Pending</p>
+        </div>
+        <h2 class="text-5xl font-extrabold mt-2 text-stone-200">
             <%= pending %>
         </h2>
     </div>
 
-    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
-        <p class="text-slate-400">In Progress</p>
-        <h2 class="text-4xl font-bold mt-2">
+    <div class="bg-stone-900 border border-stone-800 rounded-[1.5rem] p-6 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-500">
+                🔄
+            </div>
+            <p class="text-stone-300 font-medium">In Progress</p>
+        </div>
+        <h2 class="text-5xl font-extrabold mt-2 text-stone-200">
             <%= inProgress %>
         </h2>
     </div>
 
-    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
-        <p class="text-slate-400">Resolved</p>
-        <h2 class="text-4xl font-bold mt-2">
+    <div class="bg-stone-900 border border-stone-800 rounded-[1.5rem] p-6 shadow-sm hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-500">
+                ✅
+            </div>
+            <p class="text-stone-300 font-medium">Resolved</p>
+        </div>
+        <h2 class="text-5xl font-extrabold mt-2 text-stone-200">
             <%= resolved %>
         </h2>
     </div>
 
 </div>
 
-    <div class="mt-12">
+    <div class="mt-14">
 
-    <h2 class="text-2xl font-bold mb-5">
+    <h2 class="text-2xl font-bold mb-6 text-stone-100">
         Recent Complaints
     </h2>
 
     <% if(recentComplaints.length === 0){ %>
 
-        <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
-
-            No complaints found.
+        <div class="bg-stone-900 border border-stone-800 rounded-[1.5rem] p-10 text-center shadow-sm">
+            
+            <div class="w-16 h-16 bg-stone-900 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                📝
+            </div>
+            <h3 class="text-lg font-semibold text-stone-200">No complaints yet</h3>
+            <p class="text-stone-300 mt-1">Everything seems to be running smoothly.</p>
 
         </div>
 
     <% } else { %>
-
+        
+        <div class="space-y-4">
         <% recentComplaints.forEach((complaint)=>{ %>
 
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 mb-4">
+            <div class="bg-stone-900 border border-stone-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col sm:flex-row justify-between sm:items-center gap-4 group">
+                
+                <div class="flex-1">
+                    <a
+                        href="/complaints/<%= complaint._id %>"
+                        class="text-xl font-bold text-stone-200 group-hover:text-teal-600 transition-colors"
+                    >
+                        <%= complaint.title %>
+                    </a>
 
-                <a
-                    href="/complaints/<%= complaint._id %>"
-                    class="text-lg font-semibold hover:text-blue-400"
-                >
-                    <%= complaint.title %>
-                </a>
+                    <p class="text-stone-300 mt-2 line-clamp-2">
+                        <%= complaint.description %>
+                    </p>
+                </div>
 
-                <p class="text-slate-400 mt-2">
-                    <%= complaint.description %>
-                </p>
-
-                <span class="text-blue-400">
-                    <%= complaint.status %>
-                </span>
+                <div>
+                    <% if(complaint.status === 'Pending') { %>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-amber-50 text-amber-600 border border-amber-100">
+                            <%= complaint.status %>
+                        </span>
+                    <% } else if(complaint.status === 'In Progress') { %>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-blue-50 text-blue-600 border border-blue-100">
+                            <%= complaint.status %>
+                        </span>
+                    <% } else { %>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-emerald-50 text-emerald-600 border border-emerald-100">
+                            <%= complaint.status %>
+                        </span>
+                    <% } %>
+                </div>
 
             </div>
 
         <% }) %>
+        </div>
 
     <% } %>
 
@@ -94,6 +130,23 @@
 
     <%- include("./partials/footer") %>
 
+    <style>
+        .wave {
+            display: inline-block;
+            animation: wave 2.5s infinite;
+            transform-origin: 70% 70%;
+        }
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+    </style>
 </body>
 
 </html>

@@ -9,138 +9,69 @@
 
 </head>
 
-<body class="bg-slate-950 text-white font-[Inter]">
+<body class="bg-stone-950 text-stone-200 font-[Inter] antialiased selection:bg-teal-900 selection:text-teal-100">
 
-    <%- include("./partials/navbar") %>
 
-    <main class="max-w-7xl mx-auto px-8">
-        <section class="min-h-[85vh] flex items-center">
 
-    <div class="grid grid-cols-2 gap-16 items-center w-full">
+    <!-- Background Image Overlay -->
+    <div class="fixed inset-0 z-[-1]">
+        <img src="/images/image%20copy.png" alt="Background"
+            class="w-full h-full object-cover opacity-[0.16] mix-blend-luminosity">
+        <div class="absolute inset-0 bg-gradient-to-b from-stone-950/50 via-stone-950/80 to-stone-950"></div>
+    </div>
 
-        <div>
+    <main class="max-w-7xl mx-auto px-8 relative z-10">
+        <section class="min-h-[85vh] flex flex-col items-center justify-center py-20 text-center">
 
-            <p class="text-blue-500 font-semibold mb-4">
-                Smart Hostel Complaint Management
-            </p>
+            <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-900 border border-stone-800 shadow-sm mb-8 hover:bg-stone-800 transition-colors">
+                <span class="w-2.5 h-2.5 rounded-full bg-teal-500 animate-pulse"></span>
+                <p class="text-teal-400 text-sm font-semibold tracking-wide">
+                    Next-Generation Hostel Complaint Management
+                </p>
+            </div>
 
-            <h1 class="text-6xl font-bold leading-tight">
+            <h1
+                class="text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[1.1] text-white tracking-tight max-w-4xl">
                 Report hostel issues.<br>
-                Track every update.
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-emerald-400 to-teal-500">Track
+                    every update.</span>
             </h1>
 
-            <p class="text-slate-400 text-lg mt-6 leading-8">
+            <p class="text-stone-400 text-xl md:text-2xl mt-8 leading-relaxed max-w-2xl">
                 Raise complaints in seconds, monitor their progress in real time,
-                and know exactly when they're resolved.
+                and know exactly when they're resolved. Experience a seamless and hassle-free campus life.
             </p>
 
-            <div class="flex gap-4 mt-10">
+            <!-- Decorative stats/features so it doesn't look empty -->
+            <div class="flex flex-wrap items-center justify-center gap-6 md:gap-12 mt-12 text-stone-500 font-medium">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">⚡</span> Quick Reporting
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">📱</span> Real-time Tracking
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🛠️</span> Faster Resolutions
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-5 mt-14">
 
                 <a href="/auth/register"
-                   class="bg-blue-600 hover:bg-blue-700 px-7 py-3 rounded-xl transition-all duration-200 font-semibold">
-                    Get Started
+                    class="bg-teal-600 hover:bg-teal-500 text-white px-10 py-4 rounded-2xl transition-all duration-300 font-bold text-lg shadow-lg shadow-teal-900/30 hover:shadow-teal-900/50 hover:-translate-y-1">
+                    Get Started Now
                 </a>
 
                 <a href="/auth/login"
-                   class="border border-slate-700 hover:border-blue-500 px-7 py-3 rounded-xl transition-all duration-200">
+                    class="bg-stone-900/50 backdrop-blur-sm border-2 border-stone-800 hover:border-teal-500 hover:bg-stone-900 hover:text-teal-400 text-stone-200 px-10 py-4 rounded-2xl transition-all duration-300 font-bold text-lg hover:-translate-y-1">
                     Login
                 </a>
 
             </div>
 
-        </div>
-
-        <div>
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl">
-
-    <div class="flex justify-between items-center mb-6">
-
-        <h2 class="text-xl font-semibold">
-            Dashboard
-        </h2>
-
-        <span class="text-sm text-green-400">
-            ● Online
-        </span>
-
-    </div>
-
-    <div class="grid grid-cols-2 gap-4">
-
-        <div class="bg-slate-800 rounded-xl p-4">
-
-            <p class="text-slate-400 text-sm">
-                Pending
-            </p>
-
-            <h3 class="text-3xl font-bold mt-2">
-                12
-            </h3>
-
-        </div>
-
-        <div class="bg-slate-800 rounded-xl p-4">
-
-            <p class="text-slate-400 text-sm">
-                Resolved
-            </p>
-
-            <h3 class="text-3xl font-bold mt-2">
-                48
-            </h3>
-
-        </div>
-
-    </div>
-
-    <div class="mt-6 bg-slate-800 rounded-xl p-4">
-
-        <h3 class="font-semibold mb-4">
-            Recent Complaints
-        </h3>
-
-        <div class="space-y-3">
-
-            <div class="flex justify-between">
-
-                <span>Water Leakage</span>
-
-                <span class="text-yellow-400">
-                    Pending
-                </span>
-
-            </div>
-
-            <div class="flex justify-between">
-
-                <span>Wi-Fi Issue</span>
-
-                <span class="text-green-400">
-                    Resolved
-                </span>
-
-            </div>
-
-            <div class="flex justify-between">
-
-                <span>Room Cleaning</span>
-
-                <span class="text-blue-400">
-                    In Progress
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-        </div>
-
-    </div>
-
-</section>
+        </section>
     </main>
 
     <%- include("./partials/footer") %>

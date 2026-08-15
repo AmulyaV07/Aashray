@@ -3,80 +3,106 @@
 
 <head>
 
-    <title>Add Worker</title>
+    <title>Add Worker | AASHRAY</title>
 
     <%- include("../partials/head") %>
 
 </head>
 
-<body class="bg-slate-950 text-white">
+<body class="bg-stone-900 text-stone-200 font-[Inter] min-h-screen antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col">
 
     <%- include("../partials/navbar") %>
 
-    <main class="max-w-xl mx-auto py-10 px-6">
+    <main class="flex-grow flex items-center justify-center py-12 px-6 lg:px-8">
 
-        <h1 class="text-3xl font-bold">
-            Add Worker
-        </h1>
+        <div class="w-full max-w-xl bg-stone-900 rounded-[2rem] border border-stone-800 shadow-sm p-8 sm:p-12 relative overflow-hidden">
+            
+            <div class="absolute top-0 right-0 w-64 h-64 bg-teal-50 rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
-        <p class="text-slate-400 mt-2 mb-8">
-            Create a worker account and assign their expertise.
-        </p>
+            <div class="relative z-10">
 
-        <form
-            action="/admin/workers"
-            method="POST"
-            class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-5"
-        >
+                <div class="mb-8 text-center">
+                    <h1 class="text-3xl font-extrabold text-stone-100 tracking-tight">
+                        Add New Worker
+                    </h1>
+                    <p class="text-stone-300 mt-2 text-lg">
+                        Create a worker account and assign their expertise.
+                    </p>
+                </div>
 
-            <input
-                type="text"
-                name="name"
-                placeholder="Worker Name"
-                required
-                class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3"
-            >
+                <form
+                    action="/admin/workers"
+                    method="POST"
+                    class="space-y-5"
+                >
 
-            <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                required
-                class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3"
-            >
+                    <div>
+                        <label class="block mb-2 text-sm font-bold text-stone-200">Full Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="e.g. Ramesh Kumar"
+                            required
+                            class="w-full bg-stone-900 border border-stone-800 rounded-xl px-4 py-3.5 text-stone-200 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all duration-200"
+                        >
+                    </div>
 
-            <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-                class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3"
-            >
+                    <div>
+                        <label class="block mb-2 text-sm font-bold text-stone-200">Email Address</label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="worker@aashray.com"
+                            required
+                            class="w-full bg-stone-900 border border-stone-800 rounded-xl px-4 py-3.5 text-stone-200 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all duration-200"
+                        >
+                    </div>
 
-            <select
-                name="department"
-                required
-                class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3"
-            >
+                    <div>
+                        <label class="block mb-2 text-sm font-bold text-stone-200">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="••••••••"
+                            required
+                            class="w-full bg-stone-900 border border-stone-800 rounded-xl px-4 py-3.5 text-stone-200 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all duration-200"
+                        >
+                    </div>
 
-                <option value="">Select Expertise</option>
+                    <div>
+                        <label class="block mb-2 text-sm font-bold text-stone-200">Department (Expertise)</label>
+                        <select
+                            name="department"
+                            required
+                            class="w-full bg-stone-900 border border-stone-800 rounded-xl px-4 py-3.5 text-stone-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all duration-200 cursor-pointer appearance-none"
+                        >
+                            <option value="" disabled selected>Select Expertise</option>
+                            <option value="Plumbing">Plumbing</option>
+                            <option value="Electrical">Electrical</option>
+                            <option value="Cleaning">Cleaning</option>
+                            <option value="Internet">Internet</option>
+                            <option value="Maintenance">Maintenance</option>
+                        </select>
+                    </div>
 
-                <option value="Plumbing">Plumbing</option>
-                <option value="Electrical">Electrical</option>
-                <option value="Cleaning">Cleaning</option>
-                <option value="Internet">Internet</option>
-                <option value="Maintenance">Maintenance</option>
+                    <button
+                        type="submit"
+                        class="w-full bg-teal-600 hover:bg-teal-700 text-white rounded-xl py-4 mt-4 font-bold transition-all duration-300 shadow-lg shadow-teal-600/20 hover:shadow-teal-600/40 hover:-translate-y-0.5"
+                    >
+                        Create Worker
+                    </button>
 
-            </select>
+                    <div class="mt-6 text-center">
+                        <a href="/admin/workers" class="text-sm font-semibold text-stone-300 hover:text-stone-200 transition-colors">
+                            Back to Workers
+                        </a>
+                    </div>
 
-            <button
-                type="submit"
-                class="w-full bg-blue-600 hover:bg-blue-700 rounded-lg py-3 font-semibold"
-            >
-                Create Worker
-            </button>
+                </form>
 
-        </form>
+            </div>
+
+        </div>
 
     </main>
 

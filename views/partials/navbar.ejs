@@ -1,39 +1,90 @@
-<nav class="w-full px-8 py-5 border-b border-gray-800">
+<nav class="sticky top-0 z-50 w-full border-b border-stone-800 bg-stone-900/80 backdrop-blur-xl">
 
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
 
-        <h1 class="text-2xl font-bold text-blue-500">
-            AASHRAY
-        </h1>
+        <div class="h-20 flex items-center justify-between">
 
-       <div class="flex items-center gap-8">
+            <!-- Logo -->
 
-    <a href="/dashboard"
-       class="text-slate-300 hover:text-white transition">
-        Dashboard
-    </a>
+            <a
+                href="/dashboard"
+                class="flex items-center gap-3 group"
+            >
 
-    <a href="/complaints/create"
-       class="text-slate-300 hover:text-white transition">
-        Raise Complaint
-    </a>
+                <div
+                    class="w-10 h-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300"
+                >
+                    <img src="/images/image.png" alt="Aashray Logo" class="w-full h-full object-contain">
+                </div>
 
-    <a href="/complaints/my-complaints"
-       class="text-slate-300 hover:text-white transition">
-        My Complaints
-    </a>
+                <div>
 
-    <a href="/profile"
-       class="text-slate-300 hover:text-white transition">
-        Profile
-    </a>
+                    <h1 class="text-xl font-bold tracking-tight text-white">
+                        AASHRAY
+                    </h1>
 
-    <a href="/auth/logout"
-       class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg transition">
-        Logout
-    </a>
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-teal-400 font-semibold">
+                        Campus Care
+                    </p>
 
-</div>
+                </div>
+
+            </a>
+
+
+            <!-- Navigation -->
+
+            <div class="flex items-center gap-2">
+
+                <a
+                    href="/dashboard"
+                    class="px-4 py-2.5 rounded-xl text-sm font-medium text-stone-300 hover:text-white hover:bg-stone-900 transition-all duration-300"
+                >
+                    Dashboard
+                </a>
+
+
+                <a
+                    href="/complaints/create"
+                    class="px-4 py-2.5 rounded-xl text-sm font-medium text-stone-300 hover:text-white hover:bg-stone-900 transition-all duration-300"
+                >
+                    Raise Complaint
+                </a>
+
+
+                <a
+                    href="/complaints/my-complaints"
+                    class="px-4 py-2.5 rounded-xl text-sm font-medium text-stone-300 hover:text-white hover:bg-stone-900 transition-all duration-300"
+                >
+                    My Complaints
+                </a>
+
+
+                <a
+                    href="/profile"
+                    class="px-4 py-2.5 rounded-xl text-sm font-medium text-stone-300 hover:text-white hover:bg-stone-900 transition-all duration-300"
+                >
+                    Profile
+                </a>
+
+
+                <!-- Divider -->
+
+                <div class="h-7 w-px bg-stone-900 mx-2"></div>
+
+
+                <!-- Logout -->
+
+                <a
+                    href="/auth/logout"
+                    class="px-5 py-2.5 rounded-xl text-sm font-medium text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 transition-all duration-300 shadow-sm"
+                >
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
 
     </div>
 

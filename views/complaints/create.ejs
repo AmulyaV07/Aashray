@@ -3,109 +3,99 @@
 
 <head>
 
-    <title>Raise Complaint</title>
+    <title>Raise Complaint | AASHRAY</title>
 
     <%- include("../partials/head") %>
 
 </head>
 
-<body class="bg-slate-950 text-white font-[Inter]">
+<body class="bg-stone-900 text-stone-200 font-[Inter] antialiased selection:bg-teal-100 selection:text-teal-900">
 
     <%- include("../partials/navbar") %>
 
-    <main class="max-w-3xl mx-auto py-12 px-6">
+    <main class="max-w-3xl mx-auto py-12 px-6 lg:px-8">
 
-        <div class="bg-slate-900 rounded-2xl border border-slate-800 p-8">
+        <div class="bg-stone-900 rounded-[2rem] border border-stone-800 shadow-sm p-8 sm:p-10 relative overflow-hidden">
+            
+            <div class="absolute top-0 right-0 w-48 h-48 bg-teal-50 rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/2"></div>
 
-            <h1 class="text-3xl font-bold">
-                Raise a Complaint
-            </h1>
+            <div class="relative z-10">
+                <h1 class="text-3xl font-extrabold text-stone-100 tracking-tight">
+                    Raise a Complaint
+                </h1>
 
-            <p class="text-slate-400 mt-2 mb-8">
-                Fill in the details below and submit your complaint.
-            </p>
+                <p class="text-stone-300 mt-2 mb-10">
+                    Fill in the details below and we'll get someone on it right away.
+                </p>
 
-            <form
-                action="/complaints/create"
-                method="POST"
-                class="space-y-5"
+                <form action="/complaints/create" method="POST" class="space-y-6">
 
-                <div>
+                    <div>
+                        <label class="block mb-2 text-sm font-semibold text-stone-200">
+                            Complaint Title
+                        </label>
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder="e.g. Leaking tap in bathroom"
+                            class="w-full rounded-xl bg-stone-900 border border-stone-800 px-4 py-3.5 text-stone-200 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all duration-200"
+                            required
+                        >
+                    </div>
 
-    <label class="block mb-2">
-        Complaint Title
-    </label>
+                    <div>
+                        <label class="block mb-2 text-sm font-semibold text-stone-200">
+                            Category
+                        </label>
+                        <select
+                            name="category"
+                            class="w-full rounded-xl bg-stone-900 border border-stone-800 px-4 py-3.5 text-stone-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all duration-200 cursor-pointer appearance-none"
+                            required
+                        >
+                            <option value="" disabled selected>Select a category</option>
+                            <option>Plumbing</option>
+                            <option>Electrical</option>
+                            <option>Cleaning</option>
+                            <option>Internet</option>
+                            <option>Furniture</option>
+                        </select>
+                    </div>
 
-    <input
-        type="text"
-        name="title"
-        placeholder="Enter complaint title"
-        class="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3"
-    >
+                    <div>
+                        <label class="block mb-2 text-sm font-semibold text-stone-200">
+                            Description
+                        </label>
+                        <textarea
+                            name="description"
+                            rows="5"
+                            placeholder="Describe your issue in detail..."
+                            class="w-full rounded-xl bg-stone-900 border border-stone-800 px-4 py-3.5 text-stone-200 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all duration-200 resize-y"
+                            required
+                        ></textarea>
+                    </div>
 
-</div>
+                    <div>
+                        <label class="block mb-2 text-sm font-semibold text-stone-200">
+                            Room Number
+                        </label>
+                        <input
+                            type="text"
+                            name="roomNumber"
+                            placeholder="e.g. A-204"
+                            class="w-full rounded-xl bg-stone-900 border border-stone-800 px-4 py-3.5 text-stone-200 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all duration-200"
+                            required
+                        >
+                    </div>
 
-<div>
+                    <button
+                        type="submit"
+                        class="w-full bg-teal-600 hover:bg-teal-700 text-white rounded-xl py-4 mt-2 font-bold transition-all duration-300 shadow-lg shadow-teal-600/20 hover:shadow-teal-600/40 hover:-translate-y-0.5"
+                    >
+                        Submit Complaint
+                    </button>
 
-    <label class="block mb-2">
-        Category
-    </label>
-
-    <select
-        name="category"
-        class="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3"
-    >
-
-        <option>Plumbing</option>
-        <option>Electrical</option>
-        <option>Cleaning</option>
-        <option>Internet</option>
-        <option>Furniture</option>
-
-
-    </select>
-
-</div>
-
-<div>
-
-    <label class="block mb-2">
-        Description
-    </label>
-
-    <textarea
-        name="description"
-        rows="5"
-        placeholder="Describe your issue..."
-        class="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3"
-    ></textarea>
-
-</div>
-
-<div>
-
-    <label class="block mb-2">
-        Room Number
-    </label>
-
-    <input
-        type="text"
-        name="roomNumber"
-        placeholder="A-204"
-        class="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3"
-    >
-
-</div>
-
-<button
-    type="submit"
-    class="w-full bg-blue-600 hover:bg-blue-700 rounded-xl py-3 font-semibold transition"
->
-    Submit Complaint
-</button>
-            >
-
-            </form>
+                </form>
+            </div>
 
         </div>
 

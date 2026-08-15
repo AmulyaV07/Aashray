@@ -3,37 +3,38 @@
 
 <head>
 
-    <title>Admin Dashboard</title>
+    <title>Admin Dashboard | AASHRAY</title>
 
     <%- include("../partials/head") %>
 
 </head>
 
 
-<body class="bg-slate-950 text-white min-h-screen">
+<body class="bg-stone-900 text-stone-200 font-[Inter] min-h-screen antialiased selection:bg-teal-100 selection:text-teal-900">
 
     <%- include("../partials/navbar") %>
 
 
-    <main class="max-w-7xl mx-auto py-10 px-6">
+    <main class="max-w-7xl mx-auto py-12 px-6 lg:px-8">
 
 
         <!-- Header -->
 
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
 
             <div>
 
-                <p class="text-blue-400 font-medium mb-2">
-                    AASHRAY ADMIN
-                </p>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-600 text-xs font-bold tracking-widest mb-3 uppercase border border-teal-100 shadow-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse"></span>
+                    Admin Portal
+                </div>
 
-                <h1 class="text-4xl font-bold tracking-tight">
-                    Admin Dashboard
+                <h1 class="text-4xl font-extrabold tracking-tight text-stone-100">
+                    Overview
                 </h1>
 
-                <p class="text-slate-400 mt-2">
-                    Monitor hostel complaints, workers and resolution progress.
+                <p class="text-stone-300 mt-2 text-lg">
+                    Monitor hostel complaints, workers, and resolution progress.
                 </p>
 
             </div>
@@ -41,7 +42,7 @@
 
             <a
                 href="/admin/workers"
-                class="inline-flex items-center justify-center px-5 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition"
+                class="inline-flex items-center justify-center px-6 py-3.5 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-bold transition-all duration-300 shadow-lg shadow-teal-600/20 hover:shadow-teal-600/40 hover:-translate-y-0.5"
             >
                 Manage Workers
             </a>
@@ -51,18 +52,18 @@
 
         <!-- Statistics -->
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
 
 
             <!-- Total -->
 
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-
-                <p class="text-slate-400 text-sm">
+            <div class="bg-stone-900 border border-stone-800 rounded-[1.5rem] p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div class="absolute -right-4 -top-4 w-24 h-24 bg-stone-900 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+                <p class="text-stone-300 text-sm font-semibold relative z-10">
                     Total Complaints
                 </p>
 
-                <h2 class="text-4xl font-bold mt-3">
+                <h2 class="text-5xl font-extrabold mt-3 text-stone-200 relative z-10">
                     <%= total %>
                 </h2>
 
@@ -71,13 +72,13 @@
 
             <!-- Pending -->
 
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-
-                <p class="text-slate-400 text-sm">
+            <div class="bg-stone-900 border border-stone-800 rounded-[1.5rem] p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div class="absolute -right-4 -top-4 w-24 h-24 bg-amber-50 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+                <p class="text-stone-300 text-sm font-semibold relative z-10">
                     Pending
                 </p>
 
-                <h2 class="text-4xl font-bold mt-3">
+                <h2 class="text-5xl font-extrabold mt-3 text-stone-200 relative z-10">
                     <%= pending %>
                 </h2>
 
@@ -86,13 +87,13 @@
 
             <!-- In Progress -->
 
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-
-                <p class="text-slate-400 text-sm">
+            <div class="bg-stone-900 border border-stone-800 rounded-[1.5rem] p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-50 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+                <p class="text-stone-300 text-sm font-semibold relative z-10">
                     In Progress
                 </p>
 
-                <h2 class="text-4xl font-bold mt-3">
+                <h2 class="text-5xl font-extrabold mt-3 text-stone-200 relative z-10">
                     <%= inProgress %>
                 </h2>
 
@@ -101,13 +102,13 @@
 
             <!-- Resolved -->
 
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-
-                <p class="text-slate-400 text-sm">
+            <div class="bg-stone-900 border border-stone-800 rounded-[1.5rem] p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div class="absolute -right-4 -top-4 w-24 h-24 bg-emerald-50 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+                <p class="text-stone-300 text-sm font-semibold relative z-10">
                     Resolved
                 </p>
 
-                <h2 class="text-4xl font-bold mt-3">
+                <h2 class="text-5xl font-extrabold mt-3 text-stone-200 relative z-10">
                     <%= resolved %>
                 </h2>
 
@@ -116,23 +117,23 @@
 
             <!-- Average Rating -->
 
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-
-                <p class="text-slate-400 text-sm">
+            <div class="bg-stone-900 border border-stone-800 rounded-[1.5rem] p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+                <div class="absolute -right-4 -top-4 w-24 h-24 bg-yellow-50 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+                <p class="text-stone-300 text-sm font-semibold relative z-10">
                     Average Rating
                 </p>
 
-                <h2 class="text-4xl font-bold mt-3">
+                <h2 class="text-5xl font-extrabold mt-3 flex items-baseline gap-2 relative z-10 text-stone-200">
 
                     <%= averageRating %>
 
-                    <span class="text-yellow-400 text-2xl">
+                    <span class="text-yellow-400 text-3xl">
                         ★
                     </span>
 
                 </h2>
 
-                <p class="text-slate-500 text-sm mt-2">
+                <p class="text-stone-300 text-xs font-semibold uppercase mt-2 relative z-10">
                     Out of 5
                 </p>
 
@@ -144,17 +145,17 @@
 
         <!-- Recent Complaints -->
 
-        <div class="mt-12">
+        <div class="mt-16">
 
 
-            <div class="mb-6">
+            <div class="mb-8">
 
-                <h2 class="text-2xl font-bold">
+                <h2 class="text-2xl font-bold text-stone-100">
                     Recent Complaints
                 </h2>
 
-                <p class="text-slate-400 mt-1">
-                    Monitor complaints, workers and their complete timeline.
+                <p class="text-stone-300 mt-1">
+                    Monitor complaints, workers, and their complete timeline.
                 </p>
 
             </div>
@@ -163,14 +164,16 @@
             <% if (complaints.length === 0) { %>
 
 
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-10 text-center">
-
-                    <h3 class="text-lg font-semibold">
+                <div class="bg-stone-900 border border-stone-800 rounded-[2rem] p-12 text-center shadow-sm">
+                    <div class="w-20 h-20 bg-stone-900 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                        📭
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-200">
                         No complaints found
                     </h3>
 
-                    <p class="text-slate-400 mt-2">
-                        New complaints will appear here.
+                    <p class="text-stone-300 mt-2">
+                        New complaints will appear here automatically.
                     </p>
 
                 </div>
@@ -179,18 +182,18 @@
             <% } else { %>
 
 
-                <div class="space-y-5">
+                <div class="space-y-6">
 
 
                     <% complaints.forEach((complaint) => { %>
 
 
-                        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-slate-700 transition">
-
+                        <div class="bg-stone-900 border border-stone-800 rounded-[2rem] p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-stone-900 rounded-full blur-3xl opacity-60 -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
                             <!-- Top Section -->
 
-                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
+                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8 relative z-10">
 
 
                                 <!-- Complaint Information -->
@@ -198,39 +201,39 @@
                                 <div class="flex-1">
 
 
-                                    <div class="flex flex-wrap items-center gap-3">
+                                    <div class="flex flex-wrap items-center gap-4">
 
-                                        <h3 class="text-xl font-semibold">
+                                        <h3 class="text-2xl font-extrabold text-stone-100">
                                             <%= complaint.title %>
                                         </h3>
 
 
-                                        <span class="text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-300">
+                                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-stone-900 text-stone-200 border border-stone-800 uppercase tracking-wide">
                                             <%= complaint.category %>
                                         </span>
 
                                     </div>
 
 
-                                    <p class="text-slate-400 mt-2">
+                                    <p class="text-stone-300 mt-3 text-lg leading-relaxed max-w-3xl">
                                         <%= complaint.description %>
                                     </p>
 
 
                                     <!-- Details -->
 
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mt-6">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
 
 
                                         <!-- Student -->
 
-                                        <div>
+                                        <div class="bg-stone-900 rounded-xl p-4 border border-stone-800">
 
-                                            <p class="text-xs text-slate-500 uppercase tracking-wide">
+                                            <p class="text-[10px] text-stone-300 font-bold uppercase tracking-widest">
                                                 Student
                                             </p>
 
-                                            <p class="text-sm text-slate-300 mt-1">
+                                            <p class="text-sm font-semibold text-stone-200 mt-1 truncate">
 
                                                 <% if (complaint.user) { %>
 
@@ -249,13 +252,13 @@
 
                                         <!-- Room -->
 
-                                        <div>
+                                        <div class="bg-stone-900 rounded-xl p-4 border border-stone-800">
 
-                                            <p class="text-xs text-slate-500 uppercase tracking-wide">
+                                            <p class="text-[10px] text-stone-300 font-bold uppercase tracking-widest">
                                                 Room
                                             </p>
 
-                                            <p class="text-sm text-slate-300 mt-1">
+                                            <p class="text-sm font-semibold text-stone-200 mt-1 truncate">
 
                                                 <% if (complaint.user && complaint.user.roomNumber) { %>
 
@@ -274,13 +277,13 @@
 
                                         <!-- Worker -->
 
-                                        <div>
+                                        <div class="bg-stone-900 rounded-xl p-4 border border-stone-800">
 
-                                            <p class="text-xs text-slate-500 uppercase tracking-wide">
+                                            <p class="text-[10px] text-stone-300 font-bold uppercase tracking-widest">
                                                 Assigned Worker
                                             </p>
 
-                                            <p class="text-sm text-slate-300 mt-1">
+                                            <p class="text-sm font-semibold text-stone-200 mt-1 truncate">
 
                                                 <% if (complaint.assignedTo) { %>
 
@@ -288,7 +291,7 @@
 
                                                 <% } else { %>
 
-                                                    <span class="text-yellow-400">
+                                                    <span class="text-amber-500 italic">
                                                         Not assigned
                                                     </span>
 
@@ -301,13 +304,13 @@
 
                                         <!-- Department -->
 
-                                        <div>
+                                        <div class="bg-stone-900 rounded-xl p-4 border border-stone-800">
 
-                                            <p class="text-xs text-slate-500 uppercase tracking-wide">
+                                            <p class="text-[10px] text-stone-300 font-bold uppercase tracking-widest">
                                                 Department
                                             </p>
 
-                                            <p class="text-sm text-slate-300 mt-1">
+                                            <p class="text-sm font-semibold text-stone-200 mt-1 truncate">
 
                                                 <% if (complaint.assignedTo && complaint.assignedTo.department) { %>
 
@@ -337,28 +340,31 @@
 
                                     <% if (complaint.status === "Pending") { %>
 
-                                        <span class="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
+                                        <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold bg-amber-50 text-amber-600 border border-amber-100 shadow-sm">
+                                            <span class="w-2 h-2 rounded-full bg-amber-500 mr-2 animate-pulse"></span>
                                             Pending
                                         </span>
 
 
                                     <% } else if (complaint.status === "In Progress") { %>
 
-                                        <span class="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                                        <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">
+                                            <span class="w-2 h-2 rounded-full bg-blue-500 mr-2 animate-pulse"></span>
                                             In Progress
                                         </span>
 
 
                                     <% } else if (complaint.status === "Resolved") { %>
 
-                                        <span class="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-green-500/10 text-green-400 border border-green-500/20">
+                                        <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">
+                                            <span class="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>
                                             Resolved
                                         </span>
 
 
                                     <% } else { %>
 
-                                        <span class="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-slate-800 text-slate-300">
+                                        <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold bg-stone-900 text-stone-200 border border-stone-800 shadow-sm">
                                             <%= complaint.status %>
                                         </span>
 
@@ -373,34 +379,34 @@
 
                             <!-- Timeline -->
 
-                            <div class="mt-8 pt-6 border-t border-slate-800">
+                            <div class="mt-10 pt-8 border-t border-stone-800 relative z-10">
 
 
-                                <p class="text-xs text-slate-500 uppercase tracking-wide mb-5">
-                                    Complaint Timeline
+                                <p class="text-xs text-stone-300 font-bold uppercase tracking-widest mb-6">
+                                    Timeline
                                 </p>
 
 
-                                <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
 
 
                                     <!-- Raised -->
 
-                                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                                    <div class="bg-stone-900 border border-stone-800 rounded-xl p-5 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)]">
 
-                                        <p class="text-sm font-medium text-slate-300">
-                                            Complaint Raised
+                                        <p class="text-sm font-bold text-stone-200">
+                                            Raised
                                         </p>
 
                                         <% if (complaint.createdAt) { %>
 
-                                            <p class="text-xs text-slate-500 mt-2">
+                                            <p class="text-xs font-medium text-stone-300 mt-2">
                                                 <%= new Date(complaint.createdAt).toLocaleString("en-IN") %>
                                             </p>
 
                                         <% } else { %>
 
-                                            <p class="text-xs text-slate-600 mt-2">
+                                            <p class="text-xs text-stone-300 mt-2 italic">
                                                 Not available
                                             </p>
 
@@ -411,22 +417,22 @@
 
                                     <!-- Assigned -->
 
-                                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                                    <div class="bg-stone-900 border border-stone-800 rounded-xl p-5 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] opacity-<%= complaint.assignedAt ? '100' : '60' %>">
 
-                                        <p class="text-sm font-medium text-slate-300">
-                                            Worker Assigned
+                                        <p class="text-sm font-bold text-stone-200">
+                                            Assigned
                                         </p>
 
                                         <% if (complaint.assignedAt) { %>
 
-                                            <p class="text-xs text-slate-500 mt-2">
+                                            <p class="text-xs font-medium text-stone-300 mt-2">
                                                 <%= new Date(complaint.assignedAt).toLocaleString("en-IN") %>
                                             </p>
 
                                         <% } else { %>
 
-                                            <p class="text-xs text-yellow-500 mt-2">
-                                                Not assigned
+                                            <p class="text-xs text-amber-500 font-medium mt-2">
+                                                Waiting
                                             </p>
 
                                         <% } %>
@@ -436,21 +442,21 @@
 
                                     <!-- Started -->
 
-                                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                                    <div class="bg-stone-900 border border-stone-800 rounded-xl p-5 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] opacity-<%= complaint.startedAt ? '100' : '60' %>">
 
-                                        <p class="text-sm font-medium text-slate-300">
-                                            Task Started
+                                        <p class="text-sm font-bold text-stone-200">
+                                            Started
                                         </p>
 
                                         <% if (complaint.startedAt) { %>
 
-                                            <p class="text-xs text-slate-500 mt-2">
+                                            <p class="text-xs font-medium text-stone-300 mt-2">
                                                 <%= new Date(complaint.startedAt).toLocaleString("en-IN") %>
                                             </p>
 
                                         <% } else { %>
 
-                                            <p class="text-xs text-slate-600 mt-2">
+                                            <p class="text-xs text-stone-300 mt-2 italic">
                                                 Not started
                                             </p>
 
@@ -461,21 +467,21 @@
 
                                     <!-- Resolved -->
 
-                                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+                                    <div class="bg-stone-900 border border-stone-800 rounded-xl p-5 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] opacity-<%= complaint.resolvedAt ? '100' : '60' %>">
 
-                                        <p class="text-sm font-medium text-slate-300">
+                                        <p class="text-sm font-bold text-stone-200">
                                             Resolved
                                         </p>
 
                                         <% if (complaint.resolvedAt) { %>
 
-                                            <p class="text-xs text-slate-500 mt-2">
+                                            <p class="text-xs font-medium text-stone-300 mt-2">
                                                 <%= new Date(complaint.resolvedAt).toLocaleString("en-IN") %>
                                             </p>
 
                                         <% } else { %>
 
-                                            <p class="text-xs text-slate-600 mt-2">
+                                            <p class="text-xs text-stone-300 mt-2 italic">
                                                 Not resolved
                                             </p>
 
@@ -507,16 +513,16 @@
 
         <!-- Student Feedback -->
 
-        <div class="mt-12">
+        <div class="mt-16">
 
 
-            <div class="mb-6">
+            <div class="mb-8">
 
-                <h2 class="text-2xl font-bold">
+                <h2 class="text-2xl font-bold text-stone-100">
                     Student Feedback
                 </h2>
 
-                <p class="text-slate-400 mt-1">
+                <p class="text-stone-300 mt-1">
                     Reviews submitted after complaints were resolved.
                 </p>
 
@@ -526,9 +532,11 @@
             <% if (feedbacks.length === 0) { %>
 
 
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center">
-
-                    <p class="text-slate-400">
+                <div class="bg-stone-900 border border-stone-800 rounded-[2rem] p-12 text-center shadow-sm">
+                    <div class="w-20 h-20 bg-stone-900 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                        ⭐
+                    </div>
+                    <p class="text-stone-300 font-medium">
                         No feedback submitted yet.
                     </p>
 
@@ -538,85 +546,56 @@
             <% } else { %>
 
 
-                <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
 
                     <% feedbacks.forEach((feedback) => { %>
 
 
-                        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <div class="bg-stone-900 border border-stone-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
 
 
-                            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-5">
+                            <div class="flex flex-col gap-4">
 
 
-                                <!-- Feedback -->
+                                <!-- Top part with rating -->
+                                <div class="flex justify-between items-start">
+                                    
+                                    <div>
+                                        <% if (feedback.complaint) { %>
+                                            <h3 class="text-lg font-bold text-stone-200">
+                                                <%= feedback.complaint.title %>
+                                            </h3>
+                                        <% } %>
 
-                                <div>
-
-
-                                    <% if (feedback.complaint) { %>
-
-                                        <h3 class="text-lg font-semibold">
-                                            <%= feedback.complaint.title %>
-                                        </h3>
-
-                                    <% } %>
-
-
-                                    <% if (feedback.student) { %>
-
-                                        <p class="text-sm text-slate-500 mt-2">
-
-                                            Student:
-
-                                            <span class="text-slate-300">
+                                        <% if (feedback.student) { %>
+                                            <p class="text-xs font-bold text-teal-600 mt-1 uppercase tracking-wider">
                                                 <%= feedback.student.name %>
-                                            </span>
+                                            </p>
+                                        <% } %>
+                                    </div>
 
-                                        </p>
-
-                                    <% } %>
-
-
-                                    <% if (feedback.comment) { %>
-
-                                        <p class="text-slate-400 mt-4">
-                                            "<%= feedback.comment %>"
-                                        </p>
-
-                                    <% } else { %>
-
-                                        <p class="text-slate-500 mt-4">
-                                            No written comment.
-                                        </p>
-
-                                    <% } %>
-
+                                    <div class="bg-stone-900 px-3 py-1.5 rounded-lg border border-stone-800 flex items-center gap-1.5 shrink-0">
+                                        <span class="text-yellow-400 text-sm">⭐</span>
+                                        <span class="text-sm font-bold text-stone-200"><%= feedback.rating %>/5</span>
+                                    </div>
 
                                 </div>
 
 
-                                <!-- Rating -->
+                                <!-- Feedback Comment -->
 
-                                <div class="shrink-0">
+                                <div class="bg-stone-900 p-4 rounded-xl border border-stone-800">
 
-
-                                    <p class="text-yellow-400 text-lg tracking-wide">
-
-                                        <% for (let i = 0; i < feedback.rating; i++) { %>
-
-                                            ⭐
-
-                                        <% } %>
-
-                                    </p>
-
-
-                                    <p class="text-xs text-slate-500 mt-1">
-                                        <%= feedback.rating %>/5
-                                    </p>
-
+                                    <% if (feedback.comment) { %>
+                                        <p class="text-stone-200 italic text-sm">
+                                            "<%= feedback.comment %>"
+                                        </p>
+                                    <% } else { %>
+                                        <p class="text-stone-300 italic text-sm">
+                                            No written comment.
+                                        </p>
+                                    <% } %>
 
                                 </div>
 

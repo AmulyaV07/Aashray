@@ -3,168 +3,172 @@
 
 <head>
 
-    <title>Edit Worker</title>
+    <title>Edit Worker | AASHRAY</title>
 
     <%- include("../partials/head") %>
 
 </head>
 
 
-<body class="bg-slate-950 text-white min-h-screen">
+<body class="bg-stone-900 text-stone-200 font-[Inter] min-h-screen antialiased selection:bg-teal-100 selection:text-teal-900 flex flex-col">
 
     <%- include("../partials/navbar") %>
 
 
-    <main class="max-w-2xl mx-auto px-6 py-12">
+    <main class="flex-grow flex items-center justify-center px-6 py-12 lg:px-8">
 
+        <div class="w-full max-w-2xl bg-stone-900 rounded-[2rem] border border-stone-800 shadow-sm p-8 sm:p-12 relative overflow-hidden">
 
-        <!-- Header -->
+            <div class="absolute top-0 left-0 w-64 h-64 bg-amber-50 rounded-full blur-3xl opacity-60 -translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-        <div class="mb-8">
+            <div class="relative z-10">
 
-            <p class="text-blue-400 font-medium mb-2">
-                AASHRAY ADMIN
-            </p>
+                <!-- Header -->
 
-            <h1 class="text-3xl font-bold">
-                Edit Worker
-            </h1>
+                <div class="mb-10 text-center">
 
-            <p class="text-slate-400 mt-2">
-                Update the worker's information and department.
-            </p>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-600 text-xs font-bold tracking-widest mb-3 uppercase border border-teal-100 shadow-sm">
+                        Admin Portal
+                    </div>
 
-        </div>
+                    <h1 class="text-3xl font-extrabold text-stone-100 tracking-tight">
+                        Edit Worker
+                    </h1>
 
-
-        <!-- Form -->
-
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8">
-
-
-            <form
-                action="/admin/workers/<%= worker._id %>/edit"
-                method="POST"
-                class="space-y-6"
-            >
-
-
-                <!-- Name -->
-
-                <div>
-
-                    <label class="block text-sm text-slate-400 mb-2">
-                        Worker Name
-                    </label>
-
-                    <input
-                        type="text"
-                        name="name"
-                        value="<%= worker.name %>"
-                        required
-                        class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white outline-none focus:border-blue-500"
-                    >
+                    <p class="text-stone-300 mt-2 text-lg">
+                        Update the worker's information and department.
+                    </p>
 
                 </div>
 
 
-                <!-- Email -->
+                <!-- Form -->
 
-                <div>
-
-                    <label class="block text-sm text-slate-400 mb-2">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        name="email"
-                        value="<%= worker.email %>"
-                        required
-                        class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white outline-none focus:border-blue-500"
-                    >
-
-                </div>
+                <form
+                    action="/admin/workers/<%= worker._id %>/edit"
+                    method="POST"
+                    class="space-y-6"
+                >
 
 
-                <!-- Department -->
+                    <!-- Name -->
 
-                <div>
+                    <div>
 
-                    <label class="block text-sm text-slate-400 mb-2">
-                        Department
-                    </label>
+                        <label class="block mb-2 text-sm font-bold text-stone-200">
+                            Worker Name
+                        </label>
 
-                    <select
-                        name="department"
-                        required
-                        class="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-white outline-none focus:border-blue-500"
-                    >
-
-                        <option
-                            value="Maintenance"
-                            <%= worker.department === "Maintenance" ? "selected" : "" %>
+                        <input
+                            type="text"
+                            name="name"
+                            value="<%= worker.name %>"
+                            required
+                            class="w-full bg-stone-900 border border-stone-800 rounded-xl px-4 py-3.5 text-stone-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all duration-200"
                         >
-                            Maintenance
-                        </option>
 
-                        <option
-                            value="Plumbing"
-                            <%= worker.department === "Plumbing" ? "selected" : "" %>
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div>
+
+                        <label class="block mb-2 text-sm font-bold text-stone-200">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            value="<%= worker.email %>"
+                            required
+                            class="w-full bg-stone-900 border border-stone-800 rounded-xl px-4 py-3.5 text-stone-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all duration-200"
                         >
-                            Plumbing
-                        </option>
 
-                        <option
-                            value="Electrical"
-                            <%= worker.department === "Electrical" ? "selected" : "" %>
+                    </div>
+
+
+                    <!-- Department -->
+
+                    <div>
+
+                        <label class="block mb-2 text-sm font-bold text-stone-200">
+                            Department
+                        </label>
+
+                        <select
+                            name="department"
+                            required
+                            class="w-full bg-stone-900 border border-stone-800 rounded-xl px-4 py-3.5 text-stone-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 transition-all duration-200 cursor-pointer appearance-none"
                         >
-                            Electrical
-                        </option>
 
-                        <option
-                            value="Cleaning"
-                            <%= worker.department === "Cleaning" ? "selected" : "" %>
+                            <option
+                                value="Maintenance"
+                                <%= worker.department === "Maintenance" ? "selected" : "" %>
+                            >
+                                Maintenance
+                            </option>
+
+                            <option
+                                value="Plumbing"
+                                <%= worker.department === "Plumbing" ? "selected" : "" %>
+                            >
+                                Plumbing
+                            </option>
+
+                            <option
+                                value="Electrical"
+                                <%= worker.department === "Electrical" ? "selected" : "" %>
+                            >
+                                Electrical
+                            </option>
+
+                            <option
+                                value="Cleaning"
+                                <%= worker.department === "Cleaning" ? "selected" : "" %>
+                            >
+                                Cleaning
+                            </option>
+
+                            <option
+                                value="Internet"
+                                <%= worker.department === "Internet" ? "selected" : "" %>
+                            >
+                                Internet
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="flex gap-4 pt-6">
+
+                        <a
+                            href="/admin/workers"
+                            class="flex-1 text-center bg-stone-900 hover:bg-stone-200 text-stone-200 rounded-xl py-4 font-bold transition-all duration-300"
                         >
-                            Cleaning
-                        </option>
+                            Cancel
+                        </a>
 
-                        <option
-                            value="Internet"
-                            <%= worker.department === "Internet" ? "selected" : "" %>
+
+                        <button
+                            type="submit"
+                            class="flex-1 bg-teal-600 hover:bg-teal-700 text-white rounded-xl py-4 font-bold transition-all duration-300 shadow-lg shadow-teal-600/20 hover:shadow-teal-600/40 hover:-translate-y-0.5"
                         >
-                            Internet
-                        </option>
+                            Save Changes
+                        </button>
 
-                    </select>
-
-                </div>
+                    </div>
 
 
-                <!-- Buttons -->
-
-                <div class="flex gap-3 pt-4">
-
-                    <a
-                        href="/admin/workers"
-                        class="flex-1 text-center px-5 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg font-medium transition"
-                    >
-                        Cancel
-                    </a>
+                </form>
 
 
-                    <button
-                        type="submit"
-                        class="flex-1 px-5 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition"
-                    >
-                        Save Changes
-                    </button>
-
-                </div>
-
-
-            </form>
-
+            </div>
 
         </div>
 
