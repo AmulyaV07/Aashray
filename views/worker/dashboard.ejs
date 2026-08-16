@@ -212,7 +212,11 @@
                                                 <% if (task.assignedAt) { %>
 
                                                     <p class="text-xs font-medium text-stone-300 mt-2">
-                                                        <%= new Date(task.assignedAt).toLocaleString("en-IN") %>
+                                                        <%= new Date(task.assignedAt).toLocaleString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    dateStyle: "short",
+    timeStyle: "short"
+}) %>
                                                     </p>
 
                                                 <% } else { %>
@@ -237,7 +241,11 @@
                                                 <% if (task.startedAt) { %>
 
                                                     <p class="text-xs font-medium text-stone-300 mt-2">
-                                                        <%= new Date(task.startedAt).toLocaleString("en-IN") %>
+                                                        <%= new Date(task.startedAt).toLocaleString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    dateStyle: "short",
+    timeStyle: "short"
+}) %>
                                                     </p>
 
                                                 <% } else { %>
@@ -262,7 +270,11 @@
                                                 <% if (task.resolvedAt) { %>
 
                                                     <p class="text-xs font-medium text-stone-300 mt-2">
-                                                        <%= new Date(task.resolvedAt).toLocaleString("en-IN") %>
+                                                        <%= new Date(task.resolvedAt).toLocaleString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    dateStyle: "short",
+    timeStyle: "short"
+}) %>
                                                     </p>
 
                                                 <% } else { %>
